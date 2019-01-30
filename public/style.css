@@ -19,21 +19,22 @@ body {
     margin: 3% auto;
 }
 
-.welcome-page .register-comp {
+.welcome-page .user-input {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.welcome-page .register-comp input {
+.welcome-page .user-input input {
     margin: 5px;
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom-color: tomato;
+    /* border-bottom-width: thin; */
 }
 
-.welcome-page .register-comp button {
+.welcome-page .user-input button {
     margin: 10% auto;
     border: 1px solid tomato;
     color: tomato;
@@ -42,6 +43,11 @@ body {
     cursor: pointer;
 }
 
-.welcome-page .register-comp button:hover {
+.welcome-page .user-input button:hover {
     filter: contrast(95%);
+}
+
+.error {
+    margin: 10px auto 20px auto;
+    color: tomato;
 }

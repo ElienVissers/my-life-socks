@@ -16,3 +16,12 @@ module.exports.registerUser = function(first, last, email, hashedpass) {
         [first, last, email, hashedpass]
     );
 };
+
+module.exports.getUserInfo = function(email) {
+    return db.query(
+        `SELECT *
+        FROM users
+        WHERE email = $1`,
+        [email]
+    );
+};

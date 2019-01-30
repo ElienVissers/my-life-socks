@@ -4,6 +4,7 @@ const compression = require('compression');
 const cookieSession = require('cookie-session');
 const db = require('./db');
 const bcrypt = require('./bcrypt');
+const csurf = require('csurf');
 
 app.use(cookieSession({
     secret: `Token that the request came from my own site! :D`,
@@ -13,6 +14,12 @@ app.use(cookieSession({
 app.use(require('body-parser').json());
 app.use(compression());
 app.use(express.static('./public'));
+app.use(csurf());
+
+app.use(function(req, res, next){
+    res.cookie('mytoken', req.csrfToken());
+    next();
+});
 
 if (process.env.NODE_ENV != 'production') {
     app.use(
@@ -41,6 +48,24 @@ app.post('/welcome/register', (req, res) => {
         res.json({success: true});
     }).catch(function(err) {
         console.log("error in registration: ", err);
+        res.json({success: false});
+    });
+});
+
+app.post('/welcome/login', (req, res) => {
+    var userId;
+    db.getUserInfo(req.body.email).then(dbInfo => {
+        if (dbInfo.rows[0]) {
+            userId = dbInfo.rows[0].id;
+            return bcrypt.compare(req.body.password, dbInfo.rows[0].password);
+        } else {
+            res.json({notRegistered: true});
+        }
+    }).then(() => {
+        req.session.userId = userId;
+        res.json({success: true});
+    }).catch(function(err) {
+        console.log("error in login: ", err);
         res.json({success: false});
     });
 });
