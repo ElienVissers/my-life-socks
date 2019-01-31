@@ -9,8 +9,8 @@ export function ProfilePic(props) {
     }
     let name = props.first + ' ' + props.last;
     return (
-        <div className="profilepic" onClick={props.toggleUploader}>
-            <img src={url} alt={name} />
+        <div id="profilepicimg" className="profilepic" onClick={props.openUploader}>
+            <img id="profilepicimg" src={url} alt={name} />
         </div>
     );
 }

@@ -58,6 +58,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* background-image: url('/background2.png'); */
+    min-height: 100vh;
 }
 
 .header-content {
@@ -107,7 +109,7 @@ header .line {
 
 #uploader .profilepic {
     position: relative;
-    width: 40%;
+    width: 60%;
     margin-bottom: 25px;
 }
 
@@ -127,6 +129,7 @@ header .line {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    cursor: default;
 }
 
 .uploader-content {
@@ -134,16 +137,18 @@ header .line {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    width: 70%;
+    background-color: rgb(163, 213, 224);
+    width: 40%;
     height: 70%;
     margin: auto;
+    border-radius: 5%;
+    /* border: 2px solid tomato; */
 }
 
 .uploader-content button {
     border: 1px solid tomato;
     color: tomato;
-    background-color: white;
+    background-color: rgb(163, 213, 224);
     margin: 10px;
     cursor: pointer;
 }
@@ -163,5 +168,26 @@ header .line {
 .custom-file-upload {
     border: 1px solid tomato;
     color: tomato;
-    background-color: white;
+    background-color: rgb(163, 213, 224);
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    filter: contrast(95%);
+}
+
+footer {
+    position: absolute;
+    width: 100vw;
+    text-align: center;
+    bottom: 0;
+    background-color: rgb(163, 213, 224);
+    color: tomato;
+    border-top: 2px solid tomato;
+}
+
+footer h6 {
+    padding: 5px auto;
+    font-size: 1.2em;
+    margin: 0;
 }

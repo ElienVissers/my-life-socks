@@ -25,7 +25,7 @@ export class Uploader extends React.Component {
     }
     closeModal(e) {
         if (e.target == document.getElementById('uploader')) {
-            this.props.toggleUploader();
+            this.props.closeUploader();
         } else {
             return;
         }
@@ -44,7 +44,6 @@ export class Uploader extends React.Component {
                         first={this.props.first}
                         last={this.props.last}
                         pictureUrl={this.props.pictureUrl}
-                        toggleUploader={this.props.toggleUploader}
                     />
                     <h3>Change profile picture</h3>
                     <label className="custom-file-upload">

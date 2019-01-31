@@ -10,7 +10,8 @@ export class App extends React.Component {
         this.state = {
             uploaderIsVisible: false
         };
-        this.toggleUploader = this.toggleUploader.bind(this);
+        this.openUploader = this.openUploader.bind(this);
+        this.closeUploader = this.closeUploader.bind(this);
         this.changePictureUrl = this.changePictureUrl.bind(this);
     }
     componentDidMount() {
@@ -24,10 +25,15 @@ export class App extends React.Component {
             console.log('error in mount app: ', err);
         });
     }
-    toggleUploader() {
-        this.setState(prevState => ({
-            uploaderIsVisible: !prevState.uploaderIsVisible
-        }));
+    closeUploader() {
+        this.setState({
+            uploaderIsVisible: false
+        });
+    }
+    openUploader() {
+        this.setState({
+            uploaderIsVisible: true
+        });
     }
     changePictureUrl(url) {
         this.setState({
@@ -42,13 +48,14 @@ export class App extends React.Component {
                     first={this.state.first}
                     last={this.state.last}
                     pictureUrl={this.state.pictureUrl}
-                    toggleUploader={this.toggleUploader}
+                    openUploader={this.openUploader}
                 />
+                <footer><h6>www.mylifesocks.com</h6></footer>
                 {this.state.uploaderIsVisible && <Uploader
                     first={this.state.first}
                     last={this.state.last}
                     pictureUrl={this.state.pictureUrl}
-                    toggleUploader={this.toggleUploader}
+                    closeUploader={this.closeUploader}
                     changePictureUrl={this.changePictureUrl}
                 />}
             </div>

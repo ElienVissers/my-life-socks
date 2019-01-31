@@ -12,7 +12,7 @@ export function Header(props) {
                     first={props.first}
                     last={props.last}
                     pictureUrl={props.pictureUrl}
-                    toggleUploader={props.toggleUploader}
+                    openUploader={props.openUploader}
                 />
             </div>
             <div className="line">
