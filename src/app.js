@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from './axios';
 
-import {ProfilePic} from './profilepic';
 import {Uploader} from './uploader';
+import {Header} from './header';
 
 export class App extends React.Component {
     constructor() {
@@ -10,7 +10,7 @@ export class App extends React.Component {
         this.state = {
             uploaderIsVisible: false
         };
-        this.showUploader = this.showUploader.bind(this);
+        this.toggleUploader = this.toggleUploader.bind(this);
         this.changePictureUrl = this.changePictureUrl.bind(this);
     }
     componentDidMount() {
@@ -24,10 +24,10 @@ export class App extends React.Component {
             console.log('error in mount app: ', err);
         });
     }
-    showUploader() {
-        this.setState({
-            uploaderIsVisible: true
-        });
+    toggleUploader() {
+        this.setState(prevState => ({
+            uploaderIsVisible: !prevState.uploaderIsVisible
+        }));
     }
     changePictureUrl(url) {
         this.setState({
@@ -37,15 +37,20 @@ export class App extends React.Component {
     }
     render() {
         return (
-            <div>
-                <img src="/logo.png" />
-                <ProfilePic
+            <div id="app">
+                <Header
                     first={this.state.first}
                     last={this.state.last}
                     pictureUrl={this.state.pictureUrl}
-                    showUploader={this.showUploader}
+                    toggleUploader={this.toggleUploader}
                 />
-                {this.state.uploaderIsVisible && <Uploader changePictureUrl={this.changePictureUrl}/>}
+                {this.state.uploaderIsVisible && <Uploader
+                    first={this.state.first}
+                    last={this.state.last}
+                    pictureUrl={this.state.pictureUrl}
+                    toggleUploader={this.toggleUploader}
+                    changePictureUrl={this.changePictureUrl}
+                />}
             </div>
         );
     }
