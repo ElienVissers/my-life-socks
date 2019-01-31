@@ -25,3 +25,25 @@ module.exports.getUserInfo = function(email) {
         [email]
     );
 };
+
+module.exports.getUserAppInfo = function(user_id) {
+    return db.query(
+        `SELECT users.first AS first, users.last AS last, users.id AS id, profile_pictures.url AS url
+        FROM users
+        LEFT JOIN profile_pictures
+        ON users.id = profile_pictures.user_id
+        WHERE users.id = $1`,
+        [user_id]
+    );
+};
+
+module.exports.addImage = function(url, user_id) {
+    return db.query(
+        `INSERT INTO profile_pictures (url, user_id)
+        VALUES ($1, $2)
+        ON CONFLICT (user_id)
+        DO UPDATE SET url = $1
+        RETURNING url`,
+        [url, user_id]
+    );
+};

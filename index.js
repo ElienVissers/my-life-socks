@@ -5,6 +5,11 @@ const cookieSession = require('cookie-session');
 const db = require('./db');
 const bcrypt = require('./bcrypt');
 const csurf = require('csurf');
+const multer = require('multer');
+const uidSafe = require('uid-safe');
+const path = require('path');
+const s3 = require('./s3');
+const config = require('./config');
 
 app.use(cookieSession({
     secret: `Token that the request came from my own site! :D`,
@@ -31,6 +36,30 @@ if (process.env.NODE_ENV != 'production') {
 } else {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
+
+//////////////////////////////////////////////////////////////////////////////// image upload boilerplate
+
+//takes the uploaded file, gives it a unique name of 24 characters (uidSafe)+ the original file extension (path), stores it in our /uploads folder
+var diskStorage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, __dirname + '/uploads');
+    },
+    filename: function (req, file, callback) {
+        uidSafe(24).then(function(uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    }
+});
+
+//actually doing the uploading
+var uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152
+    }
+});
+
+////////////////////////////////////////////////////////////////////////////////
 
 app.get('/welcome', (req, res) => {
     if (req.session.userId) {
@@ -67,6 +96,22 @@ app.post('/welcome/login', (req, res) => {
     }).catch(function(err) {
         console.log("error in login: ", err);
         res.json({success: false});
+    });
+});
+
+app.get('/user', (req, res) => {
+    db.getUserAppInfo(req.session.userId).then(dbInfo => {
+        res.json(dbInfo);
+    }).catch(err => {
+        console.log("error in /user: ", err);
+    });
+});
+
+app.post('/profilepic/upload', uploader.single('uploadedFile'), s3.upload, (req, res) => {
+    // console.log('First middleware function: the image has been uploaded to the /uploads folder. Second middleware function: image has been uploaded to the imageboardspiced bucket on AWS s3 and removed from /uploads folder.');
+    //save url, username, title and description in the images table
+    db.addImage(config.s3Url + req.file.filename, req.session.userId).then(({rows}) => {
+        res.json(rows[0].url);
     });
 });
 
