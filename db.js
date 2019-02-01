@@ -28,10 +28,12 @@ module.exports.getUserInfo = function(email) {
 
 module.exports.getUserAppInfo = function(user_id) {
     return db.query(
-        `SELECT users.first AS first, users.last AS last, users.id AS id, profile_pictures.url AS url
+        `SELECT users.first AS first, users.last AS last, users.id AS id, profile_pictures.url AS url, bios.bio AS bio
         FROM users
         LEFT JOIN profile_pictures
         ON users.id = profile_pictures.user_id
+        LEFT JOIN bios
+        ON users.id = bios.user_id
         WHERE users.id = $1`,
         [user_id]
     );
@@ -45,17 +47,6 @@ module.exports.addImage = function(url, user_id) {
         DO UPDATE SET url = $1
         RETURNING url`,
         [url, user_id]
-    );
-};
-
-module.exports.checkBioExistance = function(user_id) {
-    return db.query(
-        `SELECT bios.bio AS bio
-        FROM users
-        LEFT JOIN bios
-        ON users.id = bios.user_id
-        WHERE users.id = $1`,
-        [user_id]
     );
 };
 

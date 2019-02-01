@@ -15,6 +15,8 @@ export function Profile(props) {
             <ProfileInfo
                 first={props.first}
                 last={props.last}
+                bio={props.bio}
+                updateBio={props.updateBio}
             />
         </div>
     );

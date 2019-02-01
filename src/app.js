@@ -14,13 +14,15 @@ export class App extends React.Component {
         this.openUploader = this.openUploader.bind(this);
         this.closeUploader = this.closeUploader.bind(this);
         this.changePictureUrl = this.changePictureUrl.bind(this);
+        this.updateBio = this.updateBio.bind(this);
     }
     componentDidMount() {
         axios.get('./user').then(results => {
             this.setState({
                 first: results.data.rows[0].first,
                 last: results.data.rows[0].last,
-                pictureUrl: results.data.rows[0].url
+                pictureUrl: results.data.rows[0].url,
+                bio: results.data.rows[0].bio
             });
         }).catch(err => {
             console.log('error in mount app: ', err);
@@ -42,6 +44,11 @@ export class App extends React.Component {
             uploaderIsVisible: false
         });
     }
+    updateBio(bio) {
+        this.setState({
+            bio: bio
+        });
+    }
     render() {
         return (
             <div id="app">
@@ -56,6 +63,8 @@ export class App extends React.Component {
                     last={this.state.last}
                     pictureUrl={this.state.pictureUrl}
                     openUploader={this.openUploader}
+                    bio={this.state.bio}
+                    updateBio={this.updateBio}
                 />
                 <footer><h6>www.mylifesocks.com</h6></footer>
                 {this.state.uploaderIsVisible && <Uploader
