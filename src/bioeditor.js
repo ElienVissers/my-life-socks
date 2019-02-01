@@ -20,7 +20,8 @@ export class BioEditor extends React.Component {
     openEditMode(e) {
         e.preventDefault();
         this.setState({
-            editMode: true
+            editMode: true,
+            draftBio: this.props.bio
         });
     }
     closeEditMode(e) {
@@ -43,7 +44,7 @@ export class BioEditor extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="bioeditor">
 
                 {!this.state.editMode && !this.props.bio && <div className="bio-add">
                     <button onClick={this.openEditMode}>ADD BIO</button>

@@ -66,7 +66,6 @@ export class App extends React.Component {
                     bio={this.state.bio}
                     updateBio={this.updateBio}
                 />
-                <footer><h6>www.mylifesocks.com</h6></footer>
                 {this.state.uploaderIsVisible && <Uploader
                     first={this.state.first}
                     last={this.state.last}
@@ -78,3 +77,5 @@ export class App extends React.Component {
         );
     }
 }
+
+//<footer><h6>www.mylifesocks.com</h6></footer>

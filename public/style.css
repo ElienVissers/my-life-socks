@@ -176,6 +176,85 @@ header .line {
     filter: contrast(95%);
 }
 
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 50px;
+    color: tomato;
+    width: 50%;
+}
+
+.profile .line {
+    margin-top: 30px;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(163, 213, 224);
+}
+
+.profile-components {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.profile-components > * {
+    margin: 20px;
+}
+
+.profile-components .profilepic {
+    position: relative;
+    width: 200px;
+    min-width: 110px;
+}
+
+.profile-components .profilepic:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.profile-components .profilepic img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profileinfo h1 {
+    color: tomato;
+    margin-top: 0;
+}
+
+.bioeditor button {
+    /* margin: 10% auto; */
+    border: 1px solid tomato;
+    color: tomato;
+    background-color: white;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+.bioeditor button:hover {
+    filter: contrast(95%);
+}
+
+.bioeditor textarea {
+    width: 500px;
+    height: 130px;
+    display: block;
+}
+
+.bioeditor p {
+    width: 500px;
+}
+
 footer {
     position: absolute;
     width: 100vw;

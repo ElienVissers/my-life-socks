@@ -6,18 +6,22 @@ import {ProfileInfo} from './profileinfo';
 export function Profile(props) {
     return (
         <div className="profile">
-            <ProfilePic
-                first={props.first}
-                last={props.last}
-                pictureUrl={props.pictureUrl}
-                openUploader={props.openUploader}
-            />
-            <ProfileInfo
-                first={props.first}
-                last={props.last}
-                bio={props.bio}
-                updateBio={props.updateBio}
-            />
+            <div className="profile-components">
+                <ProfilePic
+                    first={props.first}
+                    last={props.last}
+                    pictureUrl={props.pictureUrl}
+                    openUploader={props.openUploader}
+                />
+                <ProfileInfo
+                    first={props.first}
+                    last={props.last}
+                    bio={props.bio}
+                    updateBio={props.updateBio}
+                />
+            </div>
+            <div className="line">
+            </div>
         </div>
     );
 }
