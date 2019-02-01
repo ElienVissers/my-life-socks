@@ -206,7 +206,8 @@ header .line {
 .profile-components .profilepic {
     position: relative;
     width: 200px;
-    min-width: 110px;
+    height: 200px;
+    min-width: 200px;
 }
 
 .profile-components .profilepic:after {
@@ -251,8 +252,14 @@ header .line {
     display: block;
 }
 
-.bioeditor p {
+.bioeditor pre {
     width: 500px;
+    overflow: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
 
 footer {

@@ -12,3 +12,5 @@ export function ProfileInfo(props) {
         </div>
     );
 }
+
+//todo: add FavSocks component here :) (and maybe FavColor?)

@@ -51,7 +51,7 @@ export class BioEditor extends React.Component {
                 </div>}
 
                 {!this.state.editMode && this.props.bio && <div className="bio-description">
-                    <p>{this.props.bio}</p>
+                    <pre>{this.props.bio}</pre>
                     <button onClick={this.openEditMode}>EDIT BIO</button>
                 </div>}
 
