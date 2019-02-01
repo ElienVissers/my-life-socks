@@ -12,7 +12,10 @@ export function Profile(props) {
                 pictureUrl={props.pictureUrl}
                 openUploader={props.openUploader}
             />
-            <ProfileInfo />
+            <ProfileInfo
+                first={props.first}
+                last={props.last}
+            />
         </div>
     );
 }

@@ -115,6 +115,21 @@ app.post('/profilepic/upload', uploader.single('uploadedFile'), s3.upload, (req,
     });
 });
 
+app.get('/bio/exists', (req, res) => {
+    db.checkBioExistance(req.session.userId).then(dbInfo => {
+        res.json(dbInfo.rows[0].bio);
+    });
+});
+
+app.post('/bio/edit', (req, res) => {
+    db.updateBio(req.session.userId, req.body.bio).then((dbInfo) => {
+        res.json(dbInfo.rows[0].bio);
+    }).catch(err => {
+        console.log("error while updating bio: ", err);
+        res.json({error: true});
+    });
+});
+
 app.get('*', function(req, res) {
     if (!req.session.userId) {
         res.redirect('/welcome');

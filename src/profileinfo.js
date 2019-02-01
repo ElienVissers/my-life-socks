@@ -1,15 +1,12 @@
 import React from 'react';
-import axios from './axios';
 
-export class ProfileInfo extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    render() {
-        return (
-            <div className="profileinfo">
-            </div>
-        );
-    }
+import {BioEditor} from './bioeditor';
+
+export function ProfileInfo(props) {
+    return (
+        <div className="profileinfo">
+            <h1>{props.first} {props.last}</h1>
+            <BioEditor />
+        </div>
+    );
 }

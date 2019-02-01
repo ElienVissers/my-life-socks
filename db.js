@@ -47,3 +47,25 @@ module.exports.addImage = function(url, user_id) {
         [url, user_id]
     );
 };
+
+module.exports.checkBioExistance = function(user_id) {
+    return db.query(
+        `SELECT bios.bio AS bio
+        FROM users
+        LEFT JOIN bios
+        ON users.id = bios.user_id
+        WHERE users.id = $1`,
+        [user_id]
+    );
+};
+
+module.exports.updateBio = function(user_id, bio) {
+    return db.query(
+        `INSERT INTO bios (bio, user_id)
+        VALUES ($2, $1)
+        ON CONFLICT (user_id)
+        DO UPDATE SET bio = $2
+        RETURNING bio`,
+        [user_id, bio]
+    );
+};
