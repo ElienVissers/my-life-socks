@@ -19,6 +19,7 @@ body {
 .welcome-page img {
     margin: 3% auto;
     border-radius: 50%;
+    /* border: 2px solid rgb(163, 213, 224); */
 }
 
 .welcome-page .user-input {
@@ -90,6 +91,11 @@ body {
 .header-content .nav p {
     margin-left: 20px;
     cursor: pointer;
+}
+
+#profileLink, #logoutLink {
+    text-decoration: none;
+    color: tomato;
 }
 
 header img {

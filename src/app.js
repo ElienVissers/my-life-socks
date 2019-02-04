@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from './axios';
-import {BrowserRouter, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 import {Uploader} from './uploader';
 import {Header} from './header';
@@ -54,39 +54,40 @@ export class App extends React.Component {
     render() {
         return (
             <div id="app">
-                <Header
-                    first={this.state.first}
-                    last={this.state.last}
-                    pictureUrl={this.state.pictureUrl}
-                    openUploader={this.openUploader}
-                />
-
                 <BrowserRouter>
                     <div>
-                        <Route
-                            exact path="/"
-                            render={() => (
-                                <Profile
-                                    first={this.state.first}
-                                    last={this.state.last}
-                                    pictureUrl={this.state.pictureUrl}
-                                    openUploader={this.openUploader}
-                                    bio={this.state.bio}
-                                    updateBio={this.updateBio}
-                                />
-                            )}
+                        <Header
+                            first={this.state.first}
+                            last={this.state.last}
+                            pictureUrl={this.state.pictureUrl}
+                            openUploader={this.openUploader}
                         />
-                        <Route
-                            path="/user/:id"
-                            render={props => (
-                                <OtherProfile
-                                    key={props.match.url}
-                                    match={props.match}
-                                    history={props.history}
-                                />
-                            )}
-                        />
-                        <Redirect path="*" to="/" />
+                        <Switch>
+                            <Route
+                                exact path="/"
+                                render={() => (
+                                    <Profile
+                                        first={this.state.first}
+                                        last={this.state.last}
+                                        pictureUrl={this.state.pictureUrl}
+                                        openUploader={this.openUploader}
+                                        bio={this.state.bio}
+                                        updateBio={this.updateBio}
+                                    />
+                                )}
+                            />
+                            <Route
+                                path="/user/:id"
+                                render={props => (
+                                    <OtherProfile
+                                        key={props.match.url}
+                                        match={props.match}
+                                        history={props.history}
+                                    />
+                                )}
+                            />
+                            <Redirect path="*" to="/" />
+                        </Switch>
                     </div>
                 </BrowserRouter>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 import {ProfilePic} from './profilepic';
 
 export class Header extends React.Component {
@@ -22,8 +22,9 @@ export class Header extends React.Component {
                             pictureUrl={this.props.pictureUrl}
                             openUploader={this.props.openUploader}
                         />
-                        <p >Profile</p>
-                        <p>Logout</p>
+                        <Link to="/" id="profileLink"><p>Profile</p></Link>
+                        <p>Friends</p>
+                        <a href="/logout" id="logoutLink"><p>Logout</p></a>
                     </div>
                 </div>
                 <div className="line">

@@ -135,6 +135,11 @@ app.get('/user/:id.json', (req, res) => {
     });
 });
 
+app.get('/logout', (req, res) => {
+    req.session = null;
+    res.redirect('/welcome');
+});
+
 app.get('*', function(req, res) {
     if (!req.session.userId) {
         res.redirect('/welcome');
