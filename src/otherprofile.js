@@ -33,10 +33,12 @@ export class OtherProfile extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="otherprofilediv">
                 {this.state.invalidUserId && <div className="error">Oops! This isn&apos;t a registered sock-lover.</div>}
                 {this.state.id && <div className="otherprofile">
-                    <div className="profilepiccontainer"><img src={this.state.pictureUrl} /></div>
+                    <div className="profilepiccontainer">
+                        <img src={this.state.pictureUrl} />
+                    </div>
                     <div className="otherprofileinfo">
                         <h1>{this.state.first} {this.state.last}</h1>
                         <pre>{this.state.bio}</pre>

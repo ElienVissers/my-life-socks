@@ -19,7 +19,6 @@ body {
 .welcome-page img {
     margin: 3% auto;
     border-radius: 50%;
-    /* border: 2px solid rgb(163, 213, 224); */
 }
 
 .welcome-page .user-input {
@@ -205,7 +204,7 @@ header .line {
     filter: contrast(95%);
 }
 
-.profile {
+.profile, .otherprofilediv {
     display: flex;
     flex-direction: column;
     margin: 50px auto;
@@ -220,31 +219,30 @@ header .line {
     background-color: rgb(163, 213, 224);
 } */
 
-.profile-components {
+.profile-components, .otherprofile {
     width: 100%;
     display: flex;
-    /* justify-content: center; */
     color: black;
 }
 
-.profile-components > * {
+.profile-components > *, .profilepiccontainer, .otherprofileinfo {
     margin: 20px;
 }
 
-.profile-components .profilepic {
+.profile-components .profilepic, .otherprofile .profilepiccontainer {
     position: relative;
     width: 200px;
     height: 200px;
     min-width: 200px;
 }
 
-.profile-components .profilepic:after {
+.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after {
     content: "";
     display: block;
     padding-bottom: 100%;
 }
 
-.profile-components .profilepic img {
+.profile-components .profilepic img, .otherprofile .profilepiccontainer img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -256,13 +254,12 @@ header .line {
     object-position: center;
 }
 
-.profileinfo h1 {
+.profileinfo h1, .otherprofileinfo h1 {
     color: tomato;
     margin-top: 0;
 }
 
 .bioeditor button {
-    /* margin: 10% auto; */
     border: 1px solid tomato;
     color: tomato;
     background-color: white;
@@ -290,38 +287,10 @@ header .line {
     word-wrap: break-word;
 }
 
-.otherprofile {
-    display: flex;
-}
-
-.otherprofile .profilepiccontainer {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    min-width: 200px;
-}
-
-.otherprofile .profilepiccontainer:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-}
-
 .otherprofile .profilepiccontainer img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
     border-radius: 50%;
     border: 2px solid tomato;
 }
-
-/* otherprofile stuff here */
 
 footer {
     position: absolute;

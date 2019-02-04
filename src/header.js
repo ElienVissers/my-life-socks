@@ -34,5 +34,3 @@ export class Header extends React.Component {
     }
 
 }
-
-//make the logo a Link to the homepage == users profile --> <Link to="/"><img .../></Link> and wrap everything in a BrowserRouter tag
