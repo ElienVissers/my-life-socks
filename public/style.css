@@ -208,8 +208,7 @@ header .line {
 .profile {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    margin: 50px 0 0 0;
+    margin: 50px auto;
     color: tomato;
     width: 50%;
 }
