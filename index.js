@@ -124,6 +124,17 @@ app.post('/bio/edit', (req, res) => {
     });
 });
 
+app.get('/user/:id.json', (req, res) => {
+    if (req.session.userId == req.params.id) {
+        return res.json({redirectTo: '/'});
+    }
+    db.getUserAppInfo(req.params.id).then(dbInfo => {
+        res.json(dbInfo);
+    }).catch(err => {
+        console.log("error in getting OtherUserById: ", err);
+    });
+});
+
 app.get('*', function(req, res) {
     if (!req.session.userId) {
         res.redirect('/welcome');

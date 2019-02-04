@@ -20,8 +20,8 @@ export function Profile(props) {
                     updateBio={props.updateBio}
                 />
             </div>
-            <div className="line">
-            </div>
         </div>
     );
 }
+
+//<div className="line"></div>

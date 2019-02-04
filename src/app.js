@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from './axios';
+import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 
 import {Uploader} from './uploader';
 import {Header} from './header';
 import {Profile} from './profile';
+import {OtherProfile} from './otherprofile';
 
 export class App extends React.Component {
     constructor() {
@@ -17,7 +19,7 @@ export class App extends React.Component {
         this.updateBio = this.updateBio.bind(this);
     }
     componentDidMount() {
-        axios.get('./user').then(results => {
+        axios.get('/user').then(results => {
             this.setState({
                 first: results.data.rows[0].first,
                 last: results.data.rows[0].last,
@@ -58,14 +60,36 @@ export class App extends React.Component {
                     pictureUrl={this.state.pictureUrl}
                     openUploader={this.openUploader}
                 />
-                <Profile
-                    first={this.state.first}
-                    last={this.state.last}
-                    pictureUrl={this.state.pictureUrl}
-                    openUploader={this.openUploader}
-                    bio={this.state.bio}
-                    updateBio={this.updateBio}
-                />
+
+                <BrowserRouter>
+                    <div>
+                        <Route
+                            exact path="/"
+                            render={() => (
+                                <Profile
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    pictureUrl={this.state.pictureUrl}
+                                    openUploader={this.openUploader}
+                                    bio={this.state.bio}
+                                    updateBio={this.updateBio}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/user/:id"
+                            render={props => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
+                        <Redirect path="*" to="/" />
+                    </div>
+                </BrowserRouter>
+
                 {this.state.uploaderIsVisible && <Uploader
                     first={this.state.first}
                     last={this.state.last}

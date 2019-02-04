@@ -20,3 +20,5 @@ export function Header(props) {
         </header>
     );
 }
+
+//make the logo a Link to the homepage == users profile --> <Link to="/"><img .../></Link> and wrap everything in a BrowserRouter tag
