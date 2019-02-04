@@ -77,6 +77,19 @@ body {
 
 .header-content .logoname {
     display: flex;
+    margin-left: 50px;
+}
+
+.header-content .nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.header-content .nav p {
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 header img {
@@ -91,17 +104,6 @@ header .line {
     width: 100vw;
     height: 2px;
     background-color: tomato;
-}
-
-header .nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-header .nav p {
-    margin-left: 20px;
-    cursor: pointer;
 }
 
 .profilepic img {
