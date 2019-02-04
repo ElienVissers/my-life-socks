@@ -68,15 +68,23 @@ body {
     justify-content: space-between;
     color: tomato;
     background-color: rgb(163, 213, 224);
+    height: 50px;
 }
 
 .header-content > * {
     margin: 5px auto;
 }
 
+.header-content .logoname {
+    display: flex;
+}
+
 header img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 10px;
+    margin-right: 10px;
 }
 
 header .line {
@@ -85,13 +93,26 @@ header .line {
     background-color: tomato;
 }
 
+header .nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header .nav p {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
 .profilepic img {
     border-radius: 50%;
     border: 2px solid tomato;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     margin: 0 auto;
     cursor: pointer;
+    position: relative;
+    top: 20px;
 }
 
 #uploader {
@@ -180,22 +201,22 @@ header .line {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: 50px;
+    margin: 50px 0 0 0;
     color: tomato;
     width: 50%;
 }
 
-.profile .line {
+/* .profile .line {
     margin-top: 30px;
     width: 100%;
     height: 2px;
     background-color: rgb(163, 213, 224);
-}
+} */
 
 .profile-components {
     width: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     color: black;
 }
 
@@ -293,15 +314,7 @@ header .line {
     border: 2px solid tomato;
 }
 
-
-
-
-
-
-
-.otherprofile img {
-
-}
+/* otherprofile stuff here */
 
 footer {
     position: absolute;
