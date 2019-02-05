@@ -28,12 +28,14 @@ module.exports.getUserInfo = function(email) {
 
 module.exports.getUserAppInfo = function(user_id) {
     return db.query(
-        `SELECT users.first AS first, users.last AS last, users.id AS id, profile_pictures.url AS url, bios.bio AS bio
+        `SELECT users.first AS first, users.last AS last, users.id AS id, profile_pictures.url AS url, bios.bio AS bio, socks.color AS color, socks.shape AS shape 
         FROM users
         LEFT JOIN profile_pictures
         ON users.id = profile_pictures.user_id
         LEFT JOIN bios
         ON users.id = bios.user_id
+        LEFT JOIN socks
+        ON users.id = socks.user_id
         WHERE users.id = $1`,
         [user_id]
     );
@@ -58,6 +60,17 @@ module.exports.updateBio = function(user_id, bio) {
         DO UPDATE SET bio = $2
         RETURNING bio`,
         [user_id, bio]
+    );
+};
+
+module.exports.updateSocks = function(color, shape, user_id) {
+    return db.query(
+        `INSERT INTO socks (color, shape, user_id)
+        VALUES ($1, $2, $3)
+        ON CONFLICT (user_id)
+        DO UPDATE SET color = $1, shape = $2
+        RETURNING color, shape`,
+        [color, shape, user_id]
     );
 };
 

@@ -17,6 +17,8 @@ export class App extends React.Component {
         this.closeUploader = this.closeUploader.bind(this);
         this.changePictureUrl = this.changePictureUrl.bind(this);
         this.updateBio = this.updateBio.bind(this);
+        this.updateSocks = this.updateSocks.bind(this);
+        this.handleChange2 = this.handleChange2.bind(this);
     }
     componentDidMount() {
         axios.get('/user').then(results => {
@@ -24,7 +26,9 @@ export class App extends React.Component {
                 first: results.data.rows[0].first,
                 last: results.data.rows[0].last,
                 pictureUrl: results.data.rows[0].url,
-                bio: results.data.rows[0].bio
+                bio: results.data.rows[0].bio,
+                color: results.data.rows[0].color,
+                shape: results.data.rows[0].shape
             });
         }).catch(err => {
             console.log('error in mount app: ', err);
@@ -51,6 +55,17 @@ export class App extends React.Component {
             bio: bio
         });
     }
+    updateSocks(sockinfo) {
+        this.setState({
+            color: sockinfo.color,
+            shape: sockinfo.shape
+        });
+    }
+    handleChange2(value) {
+        this.setState({
+            shape: value
+        });
+    }
     render() {
         return (
             <div id="app">
@@ -73,6 +88,10 @@ export class App extends React.Component {
                                         openUploader={this.openUploader}
                                         bio={this.state.bio}
                                         updateBio={this.updateBio}
+                                        shape={this.state.shape}
+                                        color={this.state.color}
+                                        updateSocks={this.updateSocks}
+                                        handleChange2={this.handleChange2}
                                     />
                                 )}
                             />

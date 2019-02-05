@@ -28,12 +28,10 @@ export class BioEditor extends React.Component {
         e.preventDefault();
         var self = this;
         axios.post('/bio/edit', {bio: self.state.draftBio}).then((results) => {
-            console.log("results from /bio/edit: ", results);
             self.props.updateBio(results.data);
             if (typeof results.data == 'string') {
                 self.setState({
-                    editMode: false,
-                    bioExists: true
+                    editMode: false
                 });
             } else if (results.data.error) {
                 self.setState({

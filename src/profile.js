@@ -18,6 +18,10 @@ export function Profile(props) {
                     last={props.last}
                     bio={props.bio}
                     updateBio={props.updateBio}
+                    shape={props.shape}
+                    color={props.color}
+                    updateSocks={props.updateSocks}
+                    handleChange2={props.handleChange2}
                 />
             </div>
         </div>

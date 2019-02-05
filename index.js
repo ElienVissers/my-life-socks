@@ -124,6 +124,14 @@ app.post('/bio/edit', (req, res) => {
     });
 });
 
+app.post('/socks/edit', (req, res) => {
+    db.updateSocks(req.body.color, req.body.shape, req.session.userId).then(dbInfo => {
+        res.json(dbInfo.rows[0]);
+    }).catch(err => {
+        console.log("error while updating socks: ", err);
+    });
+});
+
 app.get('/user/:id.json', (req, res) => {
     if (req.session.userId == req.params.id) {
         return res.json({redirectTo: '/'});
