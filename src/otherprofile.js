@@ -24,7 +24,9 @@ export class OtherProfile extends React.Component {
                     first: results.data.rows[0].first,
                     last: results.data.rows[0].last,
                     pictureUrl: results.data.rows[0].url || '/profilepic.png',
-                    bio: results.data.rows[0].bio || 'No bio yet.'
+                    bio: results.data.rows[0].bio || 'No bio yet.',
+                    shape: results.data.rows[0].shape,
+                    color: results.data.rows[0].color
                 });
             }
         }).catch(err => {
@@ -36,6 +38,7 @@ export class OtherProfile extends React.Component {
         return (
             <div className="otherprofilediv">
                 {this.state.invalidOtherUserId && <div className="error">Oops! This isn&apos;t a registered sock-lover.</div>}
+
                 {this.state.id && <div className="otherprofile">
                     <div className="profilepiccontainer">
                         <img src={this.state.pictureUrl} />
@@ -43,6 +46,10 @@ export class OtherProfile extends React.Component {
                     <div className="otherprofileinfo">
                         <h1>{this.state.first} {this.state.last}</h1>
                         <pre>{this.state.bio}</pre>
+                        {this.state.color && <div>
+                            <h5>Favourite Socks:</h5>
+                            <div style={{backgroundColor: this.state.color, width: "50px", height: "50px"}}></div>
+                        </div>}
                         <FriendButton otherUserId={this.props.match.params.id} />
                     </div>
                 </div>}
