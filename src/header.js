@@ -22,7 +22,7 @@ export class Header extends React.Component {
                             pictureUrl={this.props.pictureUrl}
                             openUploader={this.props.openUploader}
                         />
-                        <Link to="/" id="profileLink"><p>Profile</p></Link>
+                        <Link to="/" id="profileLink"><p>{this.props.first}</p></Link>
                         <p>Friends</p>
                         <a href="/logout" id="logoutLink"><p>Logout</p></a>
                     </div>
