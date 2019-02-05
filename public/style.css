@@ -3,6 +3,19 @@ body {
     margin: 0;
 }
 
+button {
+    margin: 0;
+    border: 1px solid tomato;
+    color: tomato;
+    background-color: white;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: contrast(95%);
+}
+
 .welcome-page {
     display: flex;
     flex-direction: column;
@@ -38,16 +51,16 @@ body {
 
 .welcome-page .user-input button {
     margin: 10% auto;
-    border: 1px solid tomato;
+    /* border: 1px solid tomato;
     color: tomato;
     background-color: white;
     font-size: 0.8em;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
-.welcome-page .user-input button:hover {
+/* .welcome-page .user-input button:hover {
     filter: contrast(95%);
-}
+} */
 
 .error {
     margin: 10px auto 20px auto;
@@ -174,16 +187,16 @@ header .line {
 }
 
 .uploader-content button {
-    border: 1px solid tomato;
-    color: tomato;
+    /* border: 1px solid tomato;
+    color: tomato; */
     background-color: rgb(163, 213, 224);
     margin: 10px;
     cursor: pointer;
 }
 
-.uploader-content button:hover {
+/* .uploader-content button:hover {
     filter: contrast(95%);
-}
+} */
 
 .uploader-content input {
     display: none;
@@ -259,7 +272,7 @@ header .line {
     margin-top: 0;
 }
 
-.bioeditor button {
+/* .bioeditor button {
     border: 1px solid tomato;
     color: tomato;
     background-color: white;
@@ -269,7 +282,7 @@ header .line {
 
 .bioeditor button:hover {
     filter: contrast(95%);
-}
+} */
 
 .bioeditor textarea {
     width: 500px;
@@ -277,7 +290,7 @@ header .line {
     display: block;
 }
 
-.bioeditor pre {
+.bioeditor pre, .otherprofileinfo pre {
     width: 500px;
     overflow: auto;
     white-space: pre-wrap;

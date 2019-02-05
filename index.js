@@ -135,6 +135,36 @@ app.get('/user/:id.json', (req, res) => {
     });
 });
 
+app.get('/friendshipstatus/:otherid/initial', (req, res) => {
+    db.getFriendshipStatus(req.session.userId, req.params.otherid).then(dbInfo => {
+        res.json(dbInfo);
+    }).catch(err => {
+        console.log("error in getting friendshipstatus: ", err);
+    });
+});
+
+app.post('/friendshipstatus/:otherid/update', (req, res) => {
+    if (req.body.action == 'ADD FRIEND') {
+        db.addFriendship(req.session.userId, req.params.otherid).then(() => {
+            res.json({success: true});
+        }).catch(err => {
+            console.log('error while adding friendship: ', err);
+        });
+    } else if (req.body.action == 'CANCEL FRIEND REQUEST' || req.body.action == 'REMOVE FRIEND' ) {
+        db.removeFriendship(req.session.userId, req.params.otherid).then(() => {
+            res.json({success: true});
+        }).catch(err => {
+            console.log('error while removing friendship: ', err);
+        });
+    } else if (req.body.action == 'ACCEPT FRIEND REQUEST') {
+        db.updateFriendship(req.session.userId, req.params.otherid).then(() => {
+            res.json({success: true});
+        }).catch(err => {
+            console.log('error while updating friendship: ', err);
+        });
+    }
+});
+
 app.get('/logout', (req, res) => {
     req.session = null;
     res.redirect('/welcome');

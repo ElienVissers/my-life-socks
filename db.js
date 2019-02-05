@@ -60,3 +60,37 @@ module.exports.updateBio = function(user_id, bio) {
         [user_id, bio]
     );
 };
+
+module.exports.getFriendshipStatus = function(user_id, otheruser_id) {
+    return db.query(
+        `SELECT *
+        FROM friendships
+        WHERE (recipient_id = $1 AND sender_id = $2) OR (recipient_id = $2 AND sender_id = $1)`,
+        [user_id, otheruser_id]
+    );
+};
+
+module.exports.addFriendship = function(user_id, otheruser_id) {
+    return db.query(
+        `INSERT INTO friendships (sender_id, recipient_id)
+        VALUES ($1, $2)`,
+        [user_id, otheruser_id]
+    );
+};
+
+module.exports.removeFriendship = function(user_id, otheruser_id) {
+    return db.query(
+        `DELETE FROM friendships
+        WHERE (recipient_id = $1 AND sender_id = $2) OR (recipient_id = $2 AND sender_id = $1)`,
+        [user_id, otheruser_id]
+    );
+};
+
+module.exports.updateFriendship = function(user_id, otheruser_id) {
+    return db.query(
+        `UPDATE friendships
+        SET accepted = true
+        WHERE (recipient_id = $1 AND sender_id = $2)`,
+        [user_id, otheruser_id]
+    );
+};
