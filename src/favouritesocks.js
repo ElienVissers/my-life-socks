@@ -5,8 +5,7 @@ export class FavouriteSocks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editMode: false,
-            draftColor: "#000000"
+            editMode: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.openEditMode = this.openEditMode.bind(this);
@@ -20,6 +19,7 @@ export class FavouriteSocks extends React.Component {
     openEditMode() {
         this.setState({
             editMode: true,
+            draftColor: this.props.color || "#000000"
         });
     }
     closeEditMode() {
