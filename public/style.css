@@ -16,6 +16,16 @@ button:hover {
     filter: contrast(95%);
 }
 
+svg {
+    width: 10%;
+    height: auto;
+    margin: 10px auto 20px auto;
+}
+
+h5 {
+    margin-bottom: 0;
+}
+
 .welcome-page {
     display: flex;
     flex-direction: column;
