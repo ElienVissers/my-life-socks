@@ -5,7 +5,8 @@ export class FavouriteSocks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editMode: false
+            editMode: false,
+            draftColor: "#000000"
         };
         this.handleChange = this.handleChange.bind(this);
         this.openEditMode = this.openEditMode.bind(this);
@@ -59,10 +60,12 @@ export class FavouriteSocks extends React.Component {
 
                 {this.state.editMode && <div className="fav-socks-choose">
                     <input type="color" defaultValue={this.props.color || '#000000'} onChange={this.handleChange} />
+                    <label>color</label>
                     <input type="radio" value="short socks" checked={this.props.shape === "short socks"} onChange={e => this.props.handleChange2(e.target.value)} />
                     <label>short socks</label>
                     <input type="radio" value="long socks" checked={this.props.shape === "long socks"} onChange={e => this.props.handleChange2(e.target.value)} />
                     <label>long socks</label>
+                    <br />
                     <button onClick={this.closeEditMode}>SAVE</button>
                 </div>}
             </div>

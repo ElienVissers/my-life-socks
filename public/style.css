@@ -17,7 +17,7 @@ button:hover {
 }
 
 svg {
-    width: 10%;
+    width: 50px;
     height: auto;
     margin: 10px auto 20px auto;
 }
@@ -313,6 +313,18 @@ header .line {
 .otherprofile .profilepiccontainer img {
     border-radius: 50%;
     border: 2px solid tomato;
+}
+
+.fav-socks-choose {
+    margin: 20px auto;
+}
+
+.fav-socks-choose label {
+    margin: 0 10px;
+}
+
+.fav-socks-choose button {
+    margin: 20px auto;
 }
 
 footer {
