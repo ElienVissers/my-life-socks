@@ -6,6 +6,7 @@ import {Uploader} from './uploader';
 import {Header} from './header';
 import {Profile} from './profile';
 import {OtherProfile} from './otherprofile';
+import {ConnectedFriends} from './friends';
 
 export class App extends React.Component {
     constructor() {
@@ -21,6 +22,7 @@ export class App extends React.Component {
         this.handleChange2 = this.handleChange2.bind(this);
     }
     componentDidMount() {
+        console.log("connectedfriends comp: ", ConnectedFriends);
         axios.get('/user').then(results => {
             this.setState({
                 first: results.data.rows[0].first,
@@ -103,6 +105,12 @@ export class App extends React.Component {
                                         match={props.match}
                                         history={props.history}
                                     />
+                                )}
+                            />
+                            <Route
+                                path="/friends"
+                                render={() => (
+                                    <ConnectedFriends />
                                 )}
                             />
                             <Redirect path="*" to="/" />

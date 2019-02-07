@@ -28,7 +28,7 @@ module.exports.getUserInfo = function(email) {
 
 module.exports.getUserAppInfo = function(user_id) {
     return db.query(
-        `SELECT users.first AS first, users.last AS last, users.id AS id, profile_pictures.url AS url, bios.bio AS bio, socks.color AS color, socks.shape AS shape 
+        `SELECT users.first AS first, users.last AS last, users.id AS id, profile_pictures.url AS url, bios.bio AS bio, socks.color AS color, socks.shape AS shape
         FROM users
         LEFT JOIN profile_pictures
         ON users.id = profile_pictures.user_id
@@ -105,5 +105,19 @@ module.exports.updateFriendship = function(user_id, otheruser_id) {
         SET accepted = true
         WHERE (recipient_id = $1 AND sender_id = $2)`,
         [user_id, otheruser_id]
+    );
+};
+
+module.exports.getFriendshipLists = function(id) {
+    return db.query(
+        `SELECT users.id, first, last, url, accepted
+        FROM friendships
+        JOIN users
+        ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)
+        OR (accepted = true AND recipient_id = $1 AND sender_id = users.id)
+        OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)
+        LEFT JOIN profile_pictures
+        ON users.id = profile_pictures.user_id`,
+        [id]
     );
 };
