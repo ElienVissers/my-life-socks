@@ -115,7 +115,7 @@ h5 {
     cursor: pointer;
 }
 
-#profileLink, #logoutLink {
+#profileLink, #logoutLink, #friendslink {
     text-decoration: none;
     color: tomato;
 }

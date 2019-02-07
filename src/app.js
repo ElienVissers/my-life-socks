@@ -22,7 +22,6 @@ export class App extends React.Component {
         this.handleChange2 = this.handleChange2.bind(this);
     }
     componentDidMount() {
-        console.log("connectedfriends comp: ", ConnectedFriends);
         axios.get('/user').then(results => {
             this.setState({
                 first: results.data.rows[0].first,

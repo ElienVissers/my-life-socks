@@ -175,7 +175,6 @@ app.post('/friendshipstatus/:otherid/update', (req, res) => {
 
 app.get('/friends/list', (req, res) => {
     db.getFriendshipLists(req.session.userId).then(dbInfo => {
-        console.log("dbInfo from /friends/list: ", dbInfo);
         res.json(dbInfo);
     }).catch(err => {
         console.log("error while getting friendshiplists: ", err);

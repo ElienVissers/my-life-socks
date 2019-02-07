@@ -9,26 +9,28 @@ class Friends extends React.Component {
         super(props);
     }
     componentDidMount() {
-        console.log("component Friends is mounting");
         this.props.dispatch(receiveFriendsList());
     }
     render() {
         return (
             <div>
-                <div className="wannabeeContainer">
+                <div className="wannabeContainer">
 
                     {this.props.wannabes && this.props.wannabes.map(
                         i => {
                             return (
-                                <div key={i.id}>
-                                    {<Link to={`/user/${i.id}`} key={i.id}>{i.first} {i.last}</Link>}
+                                <div key={i.id} className="wannabeItem">
+                                    {<Link to={`/user/${i.id}`} key={i.id}><div>
+                                        {i.first} {i.last}
+                                    </div>
+                                    </Link>}
                                     <button onClick={
                                         () => this.props.dispatch(acceptFriendRequest(i.id))
                                     }>ACCEPT</button>
                                 </div>
                             );
                         }
-                    )};
+                    )}
 
                 </div>
                 <div className="friendsContainer">
@@ -37,14 +39,17 @@ class Friends extends React.Component {
                         i => {
                             return (
                                 <div key={i.id}>
-                                    {<Link to={`/user/${i.id}`} key={i.id}>{i.first} {i.last}</Link>}
+                                    {<Link to={`/user/${i.id}`} key={i.id}><div>
+                                        {i.first} {i.last}
+                                    </div>
+                                    </Link>}
                                     <button onClick={
                                         () => this.props.dispatch(unFriend(i.id))
                                     }>REMOVE FRIEND</button>
                                 </div>
                             );
                         }
-                    )};
+                    )}
 
                 </div>
             </div>
@@ -54,7 +59,6 @@ class Friends extends React.Component {
 
 //this function will run everytime the redux state is updated
 const mapStateToProps = function(state) {
-    console.log("state in mapStateToProps: ", state);
     if (!state.friendsList) {
         return {};
     } else {
@@ -80,6 +84,5 @@ const mapStateToProps = function(state) {
         };
     }
 };
-
 
 export let ConnectedFriends = connect(mapStateToProps)(Friends);

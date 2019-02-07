@@ -1,7 +1,6 @@
 export function reducer(state={}, action) {
 
     if (action.type == "RECEIVE_FRIENDS_WANNABEES") {
-        console.log("in reducer now");
         const state = { ...state, friendsList : action.list };
         return state;
     }
@@ -30,6 +29,5 @@ export function reducer(state={}, action) {
         )};
     }
 
-    console.log("reducer state: ", state);
     return state;
 }
