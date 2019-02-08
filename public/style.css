@@ -23,7 +23,7 @@ svg {
 }
 
 h5 {
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .welcome-page {
@@ -56,21 +56,11 @@ h5 {
     border-left: none;
     border-right: none;
     border-bottom-color: tomato;
-    /* border-bottom-width: thin; */
 }
 
 .welcome-page .user-input button {
     margin: 10% auto;
-    /* border: 1px solid tomato;
-    color: tomato;
-    background-color: white;
-    font-size: 0.8em;
-    cursor: pointer; */
 }
-
-/* .welcome-page .user-input button:hover {
-    filter: contrast(95%);
-} */
 
 .error {
     margin: 10px auto 20px auto;
@@ -81,7 +71,7 @@ h5 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-image: url('/background2.png'); */
+    background-image: url('/background2.png');
     min-height: 100vh;
 }
 
@@ -193,20 +183,13 @@ header .line {
     height: 70%;
     margin: auto;
     border-radius: 5%;
-    /* border: 2px solid tomato; */
 }
 
 .uploader-content button {
-    /* border: 1px solid tomato;
-    color: tomato; */
     background-color: rgb(163, 213, 224);
     margin: 10px;
     cursor: pointer;
 }
-
-/* .uploader-content button:hover {
-    filter: contrast(95%);
-} */
 
 .uploader-content input {
     display: none;
@@ -233,14 +216,9 @@ header .line {
     margin: 50px auto;
     color: tomato;
     width: 50%;
+    background-color: white;
+    border-radius: 20px;
 }
-
-/* .profile .line {
-    margin-top: 30px;
-    width: 100%;
-    height: 2px;
-    background-color: rgb(163, 213, 224);
-} */
 
 .profile-components, .otherprofile {
     width: 100%;
@@ -259,13 +237,13 @@ header .line {
     min-width: 200px;
 }
 
-.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after {
+.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after {
     content: "";
     display: block;
     padding-bottom: 100%;
 }
 
-.profile-components .profilepic img, .otherprofile .profilepiccontainer img {
+.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -281,18 +259,6 @@ header .line {
     color: tomato;
     margin-top: 0;
 }
-
-/* .bioeditor button {
-    border: 1px solid tomato;
-    color: tomato;
-    background-color: white;
-    font-size: 0.8em;
-    cursor: pointer;
-}
-
-.bioeditor button:hover {
-    filter: contrast(95%);
-} */
 
 .bioeditor textarea {
     width: 500px;
@@ -325,6 +291,64 @@ header .line {
 
 .fav-socks-choose button {
     margin: 20px auto;
+}
+
+.friendsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friendsListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 50px;
+    width: 50%;
+}
+
+.friendsList h1 {
+    margin-top: 40px;
+    color: tomato;
+}
+
+.wannabeContainer, .friendContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.wannabeItem, .friendItem {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    width: 400px;
+}
+
+.wannabeItem:hover, .friendItem:hover {
+    border: 1px dotted rgb(163, 213, 224);
+    border-radius: 5%;
+    transform: scale(1.05);
+}
+
+.wannabeItemPicture, .friendItemPicture {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+}
+
+.wannabeItemPicture img, .friendItemPicture img {
+    border-radius: 50%;
+    border: 2px solid tomato;
+    margin-left: 10px;
+}
+
+.wannabeItemInfo, .friendItemInfo {
+    margin: 40px 30px;
+    font-weight: bold;
 }
 
 footer {

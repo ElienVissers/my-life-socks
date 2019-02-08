@@ -13,45 +13,56 @@ class Friends extends React.Component {
     }
     render() {
         return (
-            <div>
-                <div className="wannabeContainer">
+            <div className="friendsList">
 
-                    {this.props.wannabes && this.props.wannabes.map(
-                        i => {
-                            return (
-                                <div key={i.id} className="wannabeItem">
-                                    {<Link to={`/user/${i.id}`} key={i.id}><div>
-                                        {i.first} {i.last}
+                <div className="friendsListContainer">
+                    {this.props.wannabes && <h1>Pending friend requests:</h1>}
+                    {this.props.wannabes && <div className="wannabeContainer">
+                        {this.props.wannabes && this.props.wannabes.map(
+                            i => {
+                                return (
+                                    <div key={i.id} className="wannabeItem">
+                                        {<Link to={`/user/${i.id}`} key={i.id}><div className="wannabeItemPicture">
+                                            <img src={i.url || "/profilepic.png"} />
+                                        </div>
+                                        </Link>}
+                                        <div className="wannabeItemInfo">
+                                            <h2>{i.first} {i.last}</h2>
+                                            <button onClick={
+                                                () => this.props.dispatch(acceptFriendRequest(i.id))
+                                            }>ACCEPT</button>
+                                        </div>
                                     </div>
-                                    </Link>}
-                                    <button onClick={
-                                        () => this.props.dispatch(acceptFriendRequest(i.id))
-                                    }>ACCEPT</button>
-                                </div>
-                            );
-                        }
-                    )}
-
+                                );
+                            }
+                        )}
+                    </div>}
                 </div>
-                <div className="friendsContainer">
 
-                    {this.props.friends && this.props.friends.map(
-                        i => {
-                            return (
-                                <div key={i.id}>
-                                    {<Link to={`/user/${i.id}`} key={i.id}><div>
-                                        {i.first} {i.last}
+                <div className="friendsListContainer">
+                    {this.props.friends && <h1>Fellow sock-lovers:</h1>}
+                    {this.props.friends && <div className="friendContainer">
+                        {this.props.friends && this.props.friends.map(
+                            i => {
+                                return (
+                                    <div key={i.id} className="friendItem">
+                                        {<Link to={`/user/${i.id}`} key={i.id}><div className="friendItemPicture">
+                                            <img src={i.url || "/profilepic.png"} />
+                                        </div>
+                                        </Link>}
+                                        <div className="friendItemInfo">
+                                            <h2>{i.first} {i.last}</h2>
+                                            <button onClick={
+                                                () => this.props.dispatch(unFriend(i.id))
+                                            }>REMOVE FRIEND</button>
+                                        </div>
                                     </div>
-                                    </Link>}
-                                    <button onClick={
-                                        () => this.props.dispatch(unFriend(i.id))
-                                    }>REMOVE FRIEND</button>
-                                </div>
-                            );
-                        }
-                    )}
-
+                                );
+                            }
+                        )}
+                    </div>}
                 </div>
+
             </div>
         );
     }
