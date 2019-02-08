@@ -19,7 +19,7 @@ export class FavouriteSocks extends React.Component {
     openEditMode() {
         this.setState({
             editMode: true,
-            draftColor: this.props.color || "#000000"
+            draftColor: this.props.color || "#000"
         });
     }
     closeEditMode() {
@@ -73,6 +73,15 @@ export class FavouriteSocks extends React.Component {
     }
 }
 
-//TO DO :
-//1. make socks render nice above EDIT button
-//2. make small preview icons and style color label above SAVE button
+//react-color :
+
+//import { TwitterPicker } from 'react-color';
+// handleChange(color) {
+//     this.setState({
+//         draftColor: color.hex
+//     });
+// }
+// <CirclePicker
+//       color={this.state.draftColor}
+//       onChange={this.handleChange}
+// />
