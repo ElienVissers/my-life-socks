@@ -12,11 +12,14 @@ class Friends extends React.Component {
         this.props.dispatch(receiveFriendsList());
     }
     render() {
+        if (!this.props.wannabes || !this.props.friends) {
+            return null;
+        }
         return (
             <div className="friendsList">
 
                 <div className="friendsListContainer">
-                    {this.props.wannabes && <h1>Pending friend requests:</h1>}
+                    {this.props.wannabes.length > 0 && <h1>Pending friend requests:</h1>}
                     {this.props.wannabes && <div className="wannabeContainer">
                         {this.props.wannabes && this.props.wannabes.map(
                             i => {
@@ -40,7 +43,7 @@ class Friends extends React.Component {
                 </div>
 
                 <div className="friendsListContainer">
-                    {this.props.friends && <h1>Fellow sock-lovers:</h1>}
+                    {this.props.friends.length > 0 && <h1>Fellow sock-lovers:</h1>}
                     {this.props.friends && <div className="friendContainer">
                         {this.props.friends && this.props.friends.map(
                             i => {
