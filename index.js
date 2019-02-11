@@ -213,20 +213,25 @@ server.listen(8080, function() {
 
 io.on('connection', function(socket) {
 
-    if (Object.values(onlineUsers).indexOf(socket.request.session.userId) > -1) {
-        //there is already a value of the userId in the onlineUsers object, so remove that previous one
-        let prevSocketId = Object.keys(onlineUsers).find(key => onlineUsers[key] === socket.request.session.userId);
-        delete onlineUsers[prevSocketId];
+
+
+    if (!socket.request.session || !socket.request.session.userId) {
+        return socket.disconnect(true);
     }
-    onlineUsers[socket.id] = socket.request.session.userId;
+
+    const userId = socket.request.session.userId;
+
+    socket.emit('userId', userId);
+
+    onlineUsers[socket.id] = userId;
+
     let userIds = Object.values(onlineUsers);
 
-    socket.emit('userId', socket.request.session.userId);
-
+    //onlineUsers data flow
     db.getUsersByIds(userIds).then(results => {
         socket.emit('onlineUsers', results.rows.filter(
             i => {
-                if (i.id == socket.request.session.userId) {
+                if (i.id == userId) {
                     return false;
                 } else {
                     return true;
@@ -235,14 +240,23 @@ io.on('connection', function(socket) {
         ));
     });
 
+    var filtered = userIds.filter(id => id == userId);
+    console.log(filtered, userIds, userId);
     //userJoined data flow
-    //new person joins, go to db and get first, last and pic of the user who joined ==> once you have that object, BROADCAST it
+    if (filtered.length == 1) {
+        console.log("userJoined is fired", filtered);
+        db.getUserAppInfo(socket.request.session.userId).then(results => {
+            socket.broadcast.emit('userJoined', results.rows);
+        });
+    }
+
 
     //userLeft data flow
-    //socket.on('disconnect', function() {
-    //when this function runs, we know someone just left the website
-    //remove disconnected user from onlineUsers object AND remove them from redux
-    //io.sockets.emit
-    //})
+    socket.on('disconnect', function() {
+        // remove disconnected user from onlineUsers object here
+        delete onlineUsers[socket.id];
+        // if the user is not in the list anymore at all, then send message to all connected clients (id of disconnected user)
+        io.sockets.emit('userLeft', userId);
+    });
 
 });

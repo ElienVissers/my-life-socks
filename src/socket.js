@@ -1,5 +1,5 @@
 import * as io from 'socket.io-client';
-import {createOnlineUsersList, addUserId} from './actions';
+import {createOnlineUsersList, addUserId, addToOnlineusersList, removeFromOnlineUsersList} from './actions';
 
 let socket;
 
@@ -16,12 +16,12 @@ export function initSocket(store) {
         });
 
 
-        // socket.on('userJoined', user => {
-        //     store.dispatch(nameofotheractioncreatorfunction(user));
-        // });
-    
-        // socket.on('userLeft', user => {
-        //     store.dispatch(nameofanotheractioncreatorfunction(user));
-        // });
+        socket.on('userJoined', user => {
+            store.dispatch(addToOnlineusersList(user));
+        });
+
+        socket.on('userLeft', user => {
+            store.dispatch(removeFromOnlineUsersList(user));
+        });
     }
 }

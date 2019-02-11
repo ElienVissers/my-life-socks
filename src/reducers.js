@@ -39,6 +39,24 @@ export function reducer(state={}, action) {
         return state;
     }
 
+    if (action.type == 'ADD_ONLINE_USERS_LIST') {
+        state = { ...state, onlineUsers : state.onlineUsers.concat(action.user) };
+        return state;
+    }
+
+    if (action.type == 'REMOVE_ONLINE_USERS_LIST') {
+        state = { ...state, onlineUsers : state.onlineUsers.filter(
+            i => {
+                if (i.id == action.id) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        ) };
+        return state;
+    }
+
     console.log("redux state.onlineUsers: ", state.onlineUsers);
     console.log("redux state.friendsList: ", state.friendsList);
     console.log("redux state.userId: ", state.userId);

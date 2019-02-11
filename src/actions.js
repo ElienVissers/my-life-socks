@@ -27,6 +27,13 @@ export function unFriend(friend_id) {
     });
 }
 
+export function addUserId(id) {
+    return {
+        type: "ADD_USER_ID",
+        userId: id
+    };
+}
+
 export function createOnlineUsersList(users) {
     return {
         type: "CREATE_ONLINE_USERS_LIST",
@@ -35,9 +42,16 @@ export function createOnlineUsersList(users) {
     };
 }
 
-export function addUserId(id) {
+export function addToOnlineusersList(user) {
     return {
-        type: "ADD_USER_ID",
-        userId: id
+        type: "ADD_ONLINE_USERS_LIST",
+        user: user
+    };
+}
+
+export function removeFromOnlineUsersList(id) {
+    return {
+        type: "REMOVE_ONLINE_USERS_LIST",
+        id: id
     };
 }
