@@ -109,7 +109,7 @@ h5 {
     font-weight: bold;
 }
 
-#profileLink, #logoutLink, #friendslink {
+#profileLink, #logoutLink, #friendslink, #onlinelink {
     text-decoration: none;
     color: tomato;
 }
@@ -241,13 +241,13 @@ header .line {
     min-width: 200px;
 }
 
-.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after {
+.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after, .onlineUserItemPicture:after {
     content: "";
     display: block;
     padding-bottom: 100%;
 }
 
-.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img {
+.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -297,14 +297,14 @@ header .line {
     margin: 20px auto;
 }
 
-.friendsList {
+.friendsList, .onlineUsersList {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
 }
 
-.friendsListContainer {
+.friendsListContainer, .onlineUsersListContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -314,44 +314,53 @@ header .line {
     width: 50%;
 }
 
-.friendsList h1 {
+.onlineUsersListContainer {
+    padding-bottom: 50px;
+}
+
+.friendsList h1, .onlineUsersList h1 {
     margin-top: 30px;
     color: tomato;
 }
 
-.wannabeContainer, .friendContainer {
+.wannabeContainer, .friendContainer, .onlineUserContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.wannabeItem, .friendItem {
+.wannabeItem, .friendItem, .onlineUserItem > * {
     display: flex;
     align-items: center;
     margin: 20px;
     width: 400px;
 }
 
-.wannabeItem:hover, .friendItem:hover {
+.onlineUserItem > * {
+    text-decoration: none;
+    color: black;
+}
+
+.wannabeItem:hover, .friendItem:hover, .onlineUserItem:hover {
     border: 1px dotted rgb(163, 213, 224);
     border-radius: 5%;
     transform: scale(1.05);
 }
 
-.wannabeItemPicture, .friendItemPicture {
+.wannabeItemPicture, .friendItemPicture, .onlineUserItemPicture {
     position: relative;
     width: 100px;
     height: 100px;
     min-width: 100px;
 }
 
-.wannabeItemPicture img, .friendItemPicture img {
+.wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img {
     border-radius: 50%;
     border: 2px solid tomato;
     margin-left: 10px;
 }
 
-.wannabeItemInfo, .friendItemInfo {
+.wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo {
     margin: 40px 30px;
     font-weight: bold;
 }

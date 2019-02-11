@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server, { origins: 'localhost:8080' }); //change origins if you want to deploy
 const compression = require('compression');
 const cookieSession = require('cookie-session');
 const db = require('./db');
@@ -11,15 +13,25 @@ const path = require('path');
 const s3 = require('./s3');
 const config = require('./config');
 
-app.use(cookieSession({
-    secret: `Token that the request came from my own site! :D`,
-    maxAge: 1000 * 60 * 60 * 24 * 14
-}));
+let onlineUsers = {};
+
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90
+});
+
+app.use(cookieSessionMiddleware);
+io.use(function(socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
+
 
 app.use(require('body-parser').json());
 app.use(compression());
 app.use(express.static('./public'));
+
 app.use(csurf());
+
 
 app.use(function(req, res, next){
     res.cookie('mytoken', req.csrfToken());
@@ -181,6 +193,13 @@ app.get('/friends/list', (req, res) => {
     });
 });
 
+
+//////////////////////////////////////////////////////////////////////////////// TO DO
+// app.get('/online/list', (req, res) => {
+//     //get stuff from redux or smth?
+// });
+////////////////////////////////////////////////////////////////////////////////
+
 app.get('/logout', (req, res) => {
     req.session = null;
     res.redirect('/welcome');
@@ -194,6 +213,43 @@ app.get('*', function(req, res) {
     }
 });
 
-app.listen(8080, function() {
+server.listen(8080, function() {
     console.log("I'm listening.");
+});
+
+
+io.on('connection', function(socket) {
+
+    if (Object.values(onlineUsers).indexOf(socket.request.session.userId) > -1) {
+        //there is already a value of the userId in the onlineUsers object, so remove that previous one
+        let prevSocketId = Object.keys(onlineUsers).find(key => onlineUsers[key] === socket.request.session.userId);
+        delete onlineUsers[prevSocketId];
+    }
+    onlineUsers[socket.id] = socket.request.session.userId;
+    let userIds = Object.values(onlineUsers);
+
+    socket.emit('userId', socket.request.session.userId);
+
+    db.getUsersByIds(userIds).then(results => {
+        socket.emit('onlineUsers', results.rows.filter(
+            i => {
+                if (i.id == socket.request.session.userId) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        ));
+    });
+
+    //userJoined data flow
+    //new person joins, go to db and get first, last and pic of the user who joined ==> once you have that object, BROADCAST it
+
+    //userLeft data flow
+    //socket.on('disconnect', function() {
+    //when this function runs, we know someone just left the website
+    //remove disconnected user from onlineUsers object AND remove them from redux
+    //io.sockets.emit
+    //})
+
 });

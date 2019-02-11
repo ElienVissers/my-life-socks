@@ -26,3 +26,18 @@ export function unFriend(friend_id) {
         };
     });
 }
+
+export function createOnlineUsersList(users) {
+    return {
+        type: "CREATE_ONLINE_USERS_LIST",
+        users: users
+        //users is an array of user objects
+    };
+}
+
+export function addUserId(id) {
+    return {
+        type: "ADD_USER_ID",
+        userId: id
+    };
+}

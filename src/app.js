@@ -7,6 +7,7 @@ import {Header} from './header';
 import {Profile} from './profile';
 import {OtherProfile} from './otherprofile';
 import {ConnectedFriends} from './friends';
+import {ConnectedOnlineUsers} from './onlineusers';
 
 export class App extends React.Component {
     constructor() {
@@ -110,6 +111,12 @@ export class App extends React.Component {
                                 path="/friends"
                                 render={() => (
                                     <ConnectedFriends />
+                                )}
+                            />
+                            <Route
+                                path="/online"
+                                render={() => (
+                                    <ConnectedOnlineUsers />
                                 )}
                             />
                             <Redirect path="*" to="/" />

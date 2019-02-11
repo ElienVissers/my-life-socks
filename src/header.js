@@ -11,10 +11,10 @@ export class Header extends React.Component {
         return (
             <header>
                 <div className="header-content">
-                    <div className="logoname">
+                    <Link to="/online" id="onlinelink" className="logoname">
                         <img src="/logo.png" />
                         <h1>My Life Socks!</h1>
-                    </div>
+                    </Link>
                     <div className="nav">
                         <ProfilePic
                             first={this.props.first}

@@ -121,3 +121,14 @@ module.exports.getFriendshipLists = function(id) {
         [id]
     );
 };
+
+module.exports.getUsersByIds = function(arrayOfIds) {
+    return db.query(
+        `SELECT users.id AS id, first, last, url
+        FROM users
+        LEFT JOIN profile_pictures
+        ON users.id = profile_pictures.user_id
+        WHERE users.id = ANY($1)`,
+        [arrayOfIds]
+    );
+};

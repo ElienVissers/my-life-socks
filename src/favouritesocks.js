@@ -19,7 +19,7 @@ export class FavouriteSocks extends React.Component {
     openEditMode() {
         this.setState({
             editMode: true,
-            draftColor: this.props.color || "#000"
+            draftColor: this.props.color || "#000000"
         });
     }
     closeEditMode() {
@@ -75,7 +75,7 @@ export class FavouriteSocks extends React.Component {
 
 //react-color :
 
-//import { TwitterPicker } from 'react-color';
+//import { CirclePicker } from 'react-color';
 // handleChange(color) {
 //     this.setState({
 //         draftColor: color.hex

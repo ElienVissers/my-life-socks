@@ -29,5 +29,18 @@ export function reducer(state={}, action) {
         )};
     }
 
+    if (action.type == 'CREATE_ONLINE_USERS_LIST') {
+        const state = { ...state, onlineUsers : action.users };
+        return state;
+    }
+
+    if (action.type == "ADD_USER_ID") {
+        const state = { ...state, userId : action.userId };
+        return state;
+    }
+
+    console.log("redux state.onlineUsers: ", state.onlineUsers);
+    console.log("redux state.friendsList: ", state.friendsList);
+    console.log("redux state.userId: ", state.userId);
     return state;
 }
