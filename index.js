@@ -213,16 +213,12 @@ server.listen(8080, function() {
 
 io.on('connection', function(socket) {
 
-
-
     if (!socket.request.session || !socket.request.session.userId) {
         return socket.disconnect(true);
     }
 
     const userId = socket.request.session.userId;
-
     socket.emit('userId', userId);
-
     onlineUsers[socket.id] = userId;
 
     let userIds = Object.values(onlineUsers);
@@ -240,23 +236,20 @@ io.on('connection', function(socket) {
         ));
     });
 
-    var filtered = userIds.filter(id => id == userId);
-    console.log(filtered, userIds, userId);
     //userJoined data flow
-    if (filtered.length == 1) {
-        console.log("userJoined is fired", filtered);
-        db.getUserAppInfo(socket.request.session.userId).then(results => {
+    var filteredOwnUserIds = userIds.filter(id => id == userId);
+    if (filteredOwnUserIds.length == 1) {
+        db.getUserAppInfo(userId).then(results => {
             socket.broadcast.emit('userJoined', results.rows);
         });
     }
 
-
     //userLeft data flow
     socket.on('disconnect', function() {
-        // remove disconnected user from onlineUsers object here
         delete onlineUsers[socket.id];
-        // if the user is not in the list anymore at all, then send message to all connected clients (id of disconnected user)
-        io.sockets.emit('userLeft', userId);
+        if (Object.values(onlineUsers).indexOf(userId) == -1) {
+            io.sockets.emit('userLeft', userId);
+        }
     });
 
 });
