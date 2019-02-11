@@ -1,7 +1,7 @@
 export function reducer(state={}, action) {
 
     if (action.type == "RECEIVE_FRIENDS_WANNABEES") {
-        const state = { ...state, friendsList : action.list };
+        state = { ...state, friendsList : action.list };
         return state;
     }
 
@@ -29,13 +29,13 @@ export function reducer(state={}, action) {
         )};
     }
 
-    if (action.type == 'CREATE_ONLINE_USERS_LIST') {
-        const state = { ...state, onlineUsers : action.users };
+    if (action.type == "ADD_USER_ID") {
+        state = { ...state, userId : action.userId };
         return state;
     }
 
-    if (action.type == "ADD_USER_ID") {
-        const state = { ...state, userId : action.userId };
+    if (action.type == 'CREATE_ONLINE_USERS_LIST') {
+        state = { ...state, onlineUsers : action.users };
         return state;
     }
 

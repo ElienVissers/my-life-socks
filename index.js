@@ -193,13 +193,6 @@ app.get('/friends/list', (req, res) => {
     });
 });
 
-
-//////////////////////////////////////////////////////////////////////////////// TO DO
-// app.get('/online/list', (req, res) => {
-//     //get stuff from redux or smth?
-// });
-////////////////////////////////////////////////////////////////////////////////
-
 app.get('/logout', (req, res) => {
     req.session = null;
     res.redirect('/welcome');
