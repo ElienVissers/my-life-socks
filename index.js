@@ -263,19 +263,17 @@ io.on('connection', function(socket) {
 
     //add chatMessage data flow
     socket.on('chatMessageFromUserInput', async text => {
-        const user = await db.getUserAppInfo(userId);
-        //make sure text is an object with message, id and created_at properties
-        //QUESTION is the user_id from text the same as userId here in the server? :/
+        const userInfo = await db.getUserAppInfo(userId);
         let newMessage = {
-            message: text.message,
-            message_created_at: text.created_at,
-            sender_first: user.first,
-            sender_last: user.last,
-            sender_id: user.id,
-            sender_url: user.url
+            message: text,
+            sender_first: userInfo.rows[0].first,
+            sender_last: userInfo.rows[0].last,
+            sender_id: userInfo.rows[0].id,
+            sender_url: userInfo.rows[0].url
         };
-        db.addChatMessage(newMessage.message, newMessage.sender_id).then(message_id => {
-            newMessage.message_id = message_id;
+        db.addChatMessage(newMessage.message, newMessage.sender_id).then(dbInfo => {
+            newMessage.message_id = dbInfo.rows[0].id;
+            newMessage.message_created_at = dbInfo.rows[0].created_at;
             io.sockets.emit('chatMessageFromServer', newMessage);
         }).catch(err => {
             console.log("error while adding new chatmessage: ", err);

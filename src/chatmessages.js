@@ -41,14 +41,11 @@ class ChatMessages extends React.Component {
                             </div>;
                         }
                     )}
-
                     <div className="chatMessageInput">
                         <textarea value={this.state.textOfMessage} onChange={this.handleChange} />
                         <button onClick={() => {initSocket().emit('chatMessageFromUserInput', this.state.textOfMessage);}}>SEND MESSAGE</button>
                     </div>
                 </div>
-
-
 
             </div>
         );

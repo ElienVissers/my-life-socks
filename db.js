@@ -149,7 +149,8 @@ module.exports.getChatMessages = function() {
 module.exports.addChatMessage = function(message, user_id) {
     return db.query(
         `INSERT INTO chatmessages (message, user_id)
-        VALUES ($1, $2)`,
+        VALUES ($1, $2)
+        RETURNING *`,
         [message, user_id]
     );
 };
