@@ -39,6 +39,7 @@ class Friends extends React.Component {
                                 );
                             }
                         )}
+                        <div className="emptyDiv"></div>
                     </div>}
                 </div>
 
@@ -63,6 +64,7 @@ class Friends extends React.Component {
                                 );
                             }
                         )}
+                        <div className="emptyDiv"></div>
                     </div>}
                 </div>
 

@@ -38,7 +38,6 @@ export function createOnlineUsersList(users) {
     return {
         type: "CREATE_ONLINE_USERS_LIST",
         users: users
-        //users is an array of user objects
     };
 }
 

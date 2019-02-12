@@ -58,17 +58,16 @@ export function reducer(state={}, action) {
     }
 
     if (action.type == 'LOAD_CHAT_MESSAGES') {
-        state = { ...state, chatMessages : action.messages };
+        state = { ...state, chatMessages : action.messages.reverse() };
         return state;
     }
 
     if (action.type == 'ADD_CHAT_MESSAGE') {
-        state = { ...state, chatMessages : state.chatMessages.concat(action.newMessage).reverse() };
+        console.log("state.chatMessages before concat: ", state.chatMessages);
+        state = { ...state, chatMessages : state.chatMessages.concat(action.newMessage) };
+        console.log("state.chatMessages after concat: ", state.chatMessages);
         return state;
     }
 
-    console.log("redux state.onlineUsers: ", state.onlineUsers);
-    console.log("redux state.friendsList: ", state.friendsList);
-    console.log("redux state.userId: ", state.userId);
     return state;
 }

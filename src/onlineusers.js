@@ -33,6 +33,7 @@ class OnlineUsers extends React.Component {
                                 );
                             }
                         )}
+                        <div className="emptyDiv"></div>
                     </div>}
                 </div>
 

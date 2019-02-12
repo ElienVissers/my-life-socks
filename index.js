@@ -254,8 +254,6 @@ io.on('connection', function(socket) {
 
     //load chatMessages data flow
     db.getChatMessages().then(results => {
-        console.log("results.rows from getChatMessages: ", results.rows);
-        //make sure each message is an object with message, message_id, message_created_at, sender_first, sender_last, sender_id, sender_url all (max 10) in an array
         socket.emit('chatMessages', results.rows);
     }).catch(err => {
         console.log("error while loading chatMessages: ", err);

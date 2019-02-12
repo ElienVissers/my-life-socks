@@ -13,7 +13,13 @@ class ChatMessages extends React.Component {
         this.sendMessage = this.sendMessage.bind(this);
     }
     componentDidUpdate() {
-        this.elem.scrollTop = this.elem.scrollHeight - this.elem.clientHeight;  //////////////////////////////////////////////// NOT WORKING, also do it when component loads
+        this.elem.scrollTop = this.elem.scrollHeight;
+    }
+    componentDidMount() {
+        if (!this.elem) {
+            return null;
+        }
+        this.elem.scrollTop = this.elem.scrollHeight;
     }
     handleChange(e) {
         this.setState({
@@ -33,15 +39,15 @@ class ChatMessages extends React.Component {
         return (
             <div className="chatMessagesBox">
 
-                <div className="chatMessagesContainer" ref={elem => this.elem = elem}>
+                <div className="chatMessagesContainer" >
                     {this.props.chatMessages.length == 0 && <p id="noMessagesP">There are no messages yet... send the first one!</p>}
-                    {this.props.chatMessages && <div className="chatMessagesContainer-messages">
+                    {this.props.chatMessages && <div className="chatMessagesContainer-messages" ref={elem => this.elem = elem}>
                         {this.props.chatMessages && this.props.chatMessages.map(
                             msg => {
                                 return (
                                     <div key={msg.message_id} className="chatMessageItem">
                                         <Link to={`/user/${msg.sender_id}`} className="chatMessageItemPicture">
-                                            <img src={msg.sender_url} />
+                                            <img src={msg.sender_url || '/profilepic.png'} />
                                         </Link>
                                         <div className="chatMessageItemInfo">
                                             <p><span className="message-sender">{msg.sender_first} {msg.sender_last}</span> <span className="message-date">on {msg.message_created_at.slice(0,10)}, {msg.message_created_at.slice(14,19)}</span></p>
@@ -68,7 +74,7 @@ const mapStateToProps = function(state) {
         return {};
     } else {
         return {
-            chatMessages: state.chatMessages.reverse()
+            chatMessages: state.chatMessages
         };
     }
 };

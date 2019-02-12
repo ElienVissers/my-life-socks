@@ -28,26 +28,6 @@ h5 {
     margin-bottom: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .welcome-page {
     display: flex;
     flex-direction: column;
@@ -370,6 +350,11 @@ header .line {
     align-items: center;
     margin: 20px;
     width: 400px;
+}
+
+.emptyDiv {
+    width: 400px;
+    margin: 20px;
 }
 
 .chatMessageItem {
