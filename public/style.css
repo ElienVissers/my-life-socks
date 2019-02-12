@@ -241,13 +241,13 @@ header .line {
     min-width: 200px;
 }
 
-.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after, .onlineUserItemPicture:after {
+.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after, .onlineUserItemPicture:after, .chatMessageItemPicture:after {
     content: "";
     display: block;
     padding-bottom: 100%;
 }
 
-.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img {
+.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -352,12 +352,19 @@ header .line {
     width: 400px;
 }
 
+.chatMessageItem {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    width: 500px;
+}
+
 .onlineUserItem > * {
     text-decoration: none;
     color: black;
 }
 
-.wannabeItem:hover, .friendItem:hover, .onlineUserItem:hover {
+.wannabeItem:hover, .friendItem:hover, .onlineUserItem:hover, .chatMessageItem:hover {
     border: 1px dotted rgb(163, 213, 224);
     border-radius: 5%;
     transform: scale(1.05);
@@ -370,20 +377,45 @@ header .line {
     min-width: 100px;
 }
 
-.wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img {
+.chatMessageItemPicture {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
+}
+
+.wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img {
     border-radius: 50%;
     border: 2px solid tomato;
     margin-left: 10px;
 }
 
-.wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo {
+.wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo, .chatMessageItemInfo {
     margin: 40px 30px;
     font-weight: bold;
+}
+
+.message-sender {
+    color: tomato;
+}
+
+.message-date {
+    color: grey;
+    font-weight: normal;
+}
+
+.message-content {
+    font-weight: normal;
 }
 
 .chatMessagesContainer {
     min-height: 400px;
     max-height: 790px;
+    /* overflow: auto; */
+}
+
+.chatMessageContainer-messages {
+    max-height: 500px;
     overflow: auto;
 }
 

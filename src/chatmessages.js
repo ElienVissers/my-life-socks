@@ -28,19 +28,23 @@ class ChatMessages extends React.Component {
 
                 <div className="chatMessagesContainer" ref={elem => this.elem = elem}>
                     {this.props.chatMessages.length == 0 && <p id="noMessagesP">There are no messages yet... send the first one!</p>}
-                    {this.props.chatMessages.map(
-                        msg => {
-                            <div key={msg.message_id} className="chat-message-item">
-                                <div className="chat-message-item-picture">
-                                    <Link to={`/user/${msg.sender_id}`}><img src={msg.sender_url} /></Link>
-                                </div>
-                                <div className="chat-message-item-info">
-                                    <p>{msg.sender_first} {msg.sender_last} <span className="message-date">{msg.message_created_at}</span></p>
-                                    <p>{msg.message}</p>
-                                </div>
-                            </div>;
-                        }
-                    )}
+                    {this.props.chatMessages && <div className="chatMessagesContainer-messages">
+                        {this.props.chatMessages && this.props.chatMessages.map(
+                            msg => {
+                                return (
+                                    <div key={msg.message_id} className="chatMessageItem">
+                                        <Link to={`/user/${msg.sender_id}`} className="chatMessageItemPicture">
+                                            <img src={msg.sender_url} />
+                                        </Link>
+                                        <div className="chatMessageItemInfo">
+                                            <p><span className="message-sender">{msg.sender_first} {msg.sender_last}</span> <span className="message-date">on {msg.message_created_at.slice(0,10)}, {msg.message_created_at.slice(14,19)}</span></p>
+                                            <p className="message-content">{msg.message}</p>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                        )}
+                    </div>}
                     <div className="chatMessageInput">
                         <textarea value={this.state.textOfMessage} onChange={this.handleChange} />
                         <button onClick={() => {initSocket().emit('chatMessageFromUserInput', this.state.textOfMessage);}}>SEND MESSAGE</button>
