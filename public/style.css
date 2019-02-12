@@ -395,8 +395,13 @@ header .line {
     margin-left: 10px;
 }
 
-.wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo, .chatMessageItemInfo {
+.wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo {
     margin: 40px 30px;
+    font-weight: bold;
+}
+
+.chatMessageItemInfo {
+    margin: 20px 30px;
     font-weight: bold;
 }
 
