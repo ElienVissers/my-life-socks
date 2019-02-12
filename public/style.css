@@ -28,6 +28,26 @@ h5 {
     margin-bottom: 10px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .welcome-page {
     display: flex;
     flex-direction: column;
@@ -414,9 +434,28 @@ header .line {
     /* overflow: auto; */
 }
 
-.chatMessageContainer-messages {
-    max-height: 500px;
+.chatMessagesContainer-messages {
+    max-height: 540px;
     overflow: auto;
+    margin: 10px;
+}
+
+.chatMessagesContainer-messages::-webkit-scrollbar {
+    width: 0.6em;
+}
+
+.chatMessagesContainer-messages::-webkit-scrollbar-thumb {
+    /* background-color: rgb(235, 151, 131); */
+    border-radius: 7px;
+    -webkit-box-shadow: inset 0 0 2px tomato;
+}
+
+.chatMessagesContainer-messages::-webkit-scrollbar-button {
+    display: none;
+}
+
+.chatMessagesContainer-messages::-webkit-scrollbar-track {
+    display: none;
 }
 
 #noMessagesP {

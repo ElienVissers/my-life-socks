@@ -10,13 +10,20 @@ class ChatMessages extends React.Component {
             textOfMessage: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
     }
     componentDidUpdate() {
-        this.elem.scrollTop = this.elem.scrollHeight - this.elem.clientHeight;
+        this.elem.scrollTop = this.elem.scrollHeight - this.elem.clientHeight;  //////////////////////////////////////////////// NOT WORKING, also do it when component loads
     }
     handleChange(e) {
         this.setState({
             textOfMessage: e.target.value
+        });
+    }
+    sendMessage() {
+        initSocket().emit('chatMessageFromUserInput', this.state.textOfMessage);
+        this.setState({
+            textOfMessage: ''
         });
     }
     render() {
@@ -47,7 +54,7 @@ class ChatMessages extends React.Component {
                     </div>}
                     <div className="chatMessageInput">
                         <textarea value={this.state.textOfMessage} onChange={this.handleChange} />
-                        <button onClick={() => {initSocket().emit('chatMessageFromUserInput', this.state.textOfMessage);}}>SEND MESSAGE</button>
+                        <button onClick={this.sendMessage}>SEND MESSAGE</button>
                     </div>
                 </div>
 
@@ -61,7 +68,7 @@ const mapStateToProps = function(state) {
         return {};
     } else {
         return {
-            chatMessages: state.chatMessages
+            chatMessages: state.chatMessages.reverse()
         };
     }
 };

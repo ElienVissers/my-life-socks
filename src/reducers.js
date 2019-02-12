@@ -63,8 +63,7 @@ export function reducer(state={}, action) {
     }
 
     if (action.type == 'ADD_CHAT_MESSAGE') {
-        state = { ...state, chatMessages : state.chatMessages.concat(action.newMessage) };
-        //check if the new message needs to be added in beginning or end of chatMessages array!!
+        state = { ...state, chatMessages : state.chatMessages.concat(action.newMessage).reverse() };
         return state;
     }
 
