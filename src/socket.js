@@ -1,5 +1,5 @@
 import * as io from 'socket.io-client';
-import {createOnlineUsersList, addUserId, addToOnlineusersList, removeFromOnlineUsersList} from './actions';
+import {createOnlineUsersList, addUserId, addToOnlineusersList, removeFromOnlineUsersList, receiveChatMessages, addChatMessage} from './actions';
 
 let socket;
 
@@ -15,7 +15,6 @@ export function initSocket(store) {
             store.dispatch(createOnlineUsersList(users));
         });
 
-
         socket.on('userJoined', user => {
             store.dispatch(addToOnlineusersList(user));
         });
@@ -23,5 +22,14 @@ export function initSocket(store) {
         socket.on('userLeft', user => {
             store.dispatch(removeFromOnlineUsersList(user));
         });
+
+        socket.on('chatMessages', messages => {
+            store.dispatch(receiveChatMessages(messages));
+        });
+
+        socket.on('chatMessageFromServer', (newMessage) => {
+            store.dispatch(addChatMessage(newMessage));
+        });
     }
+    return socket;
 }

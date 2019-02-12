@@ -109,7 +109,7 @@ h5 {
     font-weight: bold;
 }
 
-#profileLink, #logoutLink, #friendslink, #onlinelink {
+#profileLink, #logoutLink, #friendslink, #onlinelink, #chatlink {
     text-decoration: none;
     color: tomato;
 }
@@ -297,14 +297,14 @@ header .line {
     margin: 20px auto;
 }
 
-.friendsList, .onlineUsersList {
+.friendsList, .onlineUsersList, .chatMessagesBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
 }
 
-.friendsListContainer, .onlineUsersListContainer {
+.friendsListContainer, .onlineUsersListContainer, .chatMessagesContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -312,6 +312,22 @@ header .line {
     border-radius: 20px;
     margin-top: 50px;
     width: 50%;
+}
+
+.chatMessageInput {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatMessageInput textarea {
+    width: 500px;
+    height: 150px;
+}
+
+.chatMessageInput button {
+    width: 130px;
+    margin: 20px auto;
 }
 
 .onlineUsersListContainer {
@@ -363,6 +379,16 @@ header .line {
 .wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo {
     margin: 40px 30px;
     font-weight: bold;
+}
+
+.chatMessagesContainer {
+    min-height: 400px;
+    max-height: 790px;
+    overflow: auto;
+}
+
+#noMessagesP {
+    margin-top: 85px;
 }
 
 footer {

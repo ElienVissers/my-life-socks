@@ -55,3 +55,17 @@ export function removeFromOnlineUsersList(id) {
         id: id
     };
 }
+
+export function receiveChatMessages(messages) {
+    return {
+        type: "LOAD_CHAT_MESSAGES",
+        messages: messages
+    };
+}
+
+export function addChatMessage(newMessage) {
+    return {
+        type: "ADD_CHAT_MESSAGE",
+        newMessage: newMessage
+    };
+}

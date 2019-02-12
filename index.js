@@ -252,4 +252,34 @@ io.on('connection', function(socket) {
         }
     });
 
+    //load chatMessages data flow
+    db.getChatMessages().then(results => {
+        console.log("results.rows from getChatMessages: ", results.rows);
+        //make sure each message is an object with message, message_id, message_created_at, sender_first, sender_last, sender_id, sender_url all (max 10) in an array
+        socket.emit('chatMessages', results.rows);
+    }).catch(err => {
+        console.log("error while loading chatMessages: ", err);
+    });
+
+    //add chatMessage data flow
+    socket.on('chatMessageFromUserInput', async text => {
+        const user = await db.getUserAppInfo(userId);
+        //make sure text is an object with message, id and created_at properties
+        //QUESTION is the user_id from text the same as userId here in the server? :/
+        let newMessage = {
+            message: text.message,
+            message_created_at: text.created_at,
+            sender_first: user.first,
+            sender_last: user.last,
+            sender_id: user.id,
+            sender_url: user.url
+        };
+        db.addChatMessage(newMessage.message, newMessage.sender_id).then(message_id => {
+            newMessage.message_id = message_id;
+            io.sockets.emit('chatMessageFromServer', newMessage);
+        }).catch(err => {
+            console.log("error while adding new chatmessage: ", err);
+        });
+    });
+
 });

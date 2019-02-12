@@ -132,3 +132,24 @@ module.exports.getUsersByIds = function(arrayOfIds) {
         [arrayOfIds]
     );
 };
+
+module.exports.getChatMessages = function() {
+    return db.query(
+        `SELECT users.id AS sender_id, users.first AS sender_first, users.last AS sender_last, profile_pictures.url AS sender_url, message, chatmessages.id AS message_id, chatmessages.created_at AS message_created_at
+        FROM chatmessages
+        LEFT JOIN users
+        ON chatmessages.user_id = users.id
+        LEFT JOIN profile_pictures
+        ON chatmessages.user_id = profile_pictures.user_id
+        ORDER BY chatmessages.created_at DESC
+        LIMIT 10`
+    );
+};
+
+module.exports.addChatMessage = function(message, user_id) {
+    return db.query(
+        `INSERT INTO chatmessages (message, user_id)
+        VALUES ($1, $2)`,
+        [message, user_id]
+    );
+};

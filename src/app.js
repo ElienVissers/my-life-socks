@@ -8,6 +8,7 @@ import {Profile} from './profile';
 import {OtherProfile} from './otherprofile';
 import {ConnectedFriends} from './friends';
 import {ConnectedOnlineUsers} from './onlineusers';
+import {ConnectedChatMessages} from './chatmessages';
 
 export class App extends React.Component {
     constructor() {
@@ -117,6 +118,12 @@ export class App extends React.Component {
                                 path="/online"
                                 render={() => (
                                     <ConnectedOnlineUsers />
+                                )}
+                            />
+                            <Route
+                                path="/chat"
+                                render={() => (
+                                    <ConnectedChatMessages />
                                 )}
                             />
                             <Redirect path="*" to="/" />

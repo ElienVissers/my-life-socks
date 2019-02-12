@@ -57,6 +57,17 @@ export function reducer(state={}, action) {
         return state;
     }
 
+    if (action.type == 'LOAD_CHAT_MESSAGES') {
+        state = { ...state, chatMessages : action.messages };
+        return state;
+    }
+
+    if (action.type == 'ADD_CHAT_MESSAGE') {
+        state = { ...state, chatMessages : state.chatMessages.concat(action.newMessage) };
+        //check if the new message needs to be added in beginning or end of chatMessages array!!
+        return state;
+    }
+
     console.log("redux state.onlineUsers: ", state.onlineUsers);
     console.log("redux state.friendsList: ", state.friendsList);
     console.log("redux state.userId: ", state.userId);
