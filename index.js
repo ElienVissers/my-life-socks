@@ -298,7 +298,7 @@ io.on('connection', function(socket) {
             sender_url: userInfo.rows[0].url,
             friendship_id: info.friendship_id
         };
-        db.addChatMessage(newFriendMessage.message, newFriendMessage.sender_id, newFriendMessage.friendship_id).then(dbInfo => {
+        db.addFriendMessage(newFriendMessage.message, newFriendMessage.sender_id, newFriendMessage.friendship_id).then(dbInfo => {
             newFriendMessage.message_id = dbInfo.rows[0].id;
             newFriendMessage.message_created_at = dbInfo.rows[0].created_at;
             io.sockets.emit('newFriendMessageFromServer', newFriendMessage);
@@ -313,6 +313,6 @@ io.on('connection', function(socket) {
 
     socket.on('hideFriendMessages', () => {
         socket.emit('hideFriendMessages');
-    }); 
+    });
 
 });

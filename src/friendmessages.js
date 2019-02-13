@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {initSocket} from './socket';
 import {removeRecentFriend} from './actions';
 
-//send friendship_id as second argument with the newFriendMessageFromUserInput event
 
 class FriendMessages extends React.Component {
     constructor(props) {
@@ -16,13 +15,7 @@ class FriendMessages extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
     }
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.recentFriend != prevState.friends) {
-            console.log("prevProps and prevState: ", prevProps, prevState);
-            // this.setState({
-            //     friends: true
-            // });
-        }
+    componentDidUpdate() {
         if (!this.elem) {
             return null;
         }
@@ -33,9 +26,10 @@ class FriendMessages extends React.Component {
             if (results.data.rows.length !== 0) {
                 if (results.data.rows[0].accepted) {
                     this.setState({
-                        friends: true
+                        friends: true,
+                        friendship_id: results.data.rows[0].id
                     });
-                    initSocket().emit('showFriendMessagesFromUserInput', this.props.match.params.id);
+                    initSocket().emit('showFriendMessagesFromUserInput', results.data.rows[0].id);
                 }
             }
         });
@@ -53,7 +47,7 @@ class FriendMessages extends React.Component {
         });
     }
     sendMessage() {
-        initSocket().emit('newFriendMessageFromUserInput', {text: this.state.textOfMessage, friendship_id: this.props.match.params.id});
+        initSocket().emit('newFriendMessageFromUserInput', {text: this.state.textOfMessage, friendship_id: this.state.friendship_id});
         this.setState({
             textOfMessage: ''
         });
@@ -97,7 +91,6 @@ class FriendMessages extends React.Component {
 }
 
 const mapStateToProps = function(state) {
-    console.log("mapstatetoprops running", state.recentFriend);
     return {
         friendMessages: state.friendMessages || [],
         recentFriend: state.recentFriend
