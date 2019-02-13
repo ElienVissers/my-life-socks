@@ -9,6 +9,7 @@ import {OtherProfile} from './otherprofile';
 import {ConnectedFriends} from './friends';
 import {ConnectedOnlineUsers} from './onlineusers';
 import {ConnectedChatMessages} from './chatmessages';
+import {ConnectedFriendMessages} from './friendmessages';
 
 export class App extends React.Component {
     constructor() {
@@ -101,11 +102,15 @@ export class App extends React.Component {
                             <Route
                                 path="/user/:id"
                                 render={props => (
-                                    <OtherProfile
-                                        key={props.match.url}
-                                        match={props.match}
-                                        history={props.history}
-                                    />
+                                    <div key={props.match.url}>
+                                        <OtherProfile
+                                            match={props.match}
+                                            history={props.history}
+                                        />
+                                        <ConnectedFriendMessages
+                                            match={props.match}
+                                        />
+                                    </div>
                                 )}
                             />
                             <Route

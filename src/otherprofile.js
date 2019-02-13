@@ -48,7 +48,7 @@ export class OtherProfile extends React.Component {
             </svg>;
         }
         return (
-            <div className="otherprofilediv">
+            <div id="otherprofilediv" className="otherprofilediv">
                 {this.state.invalidOtherUserId && <div className="error">Oops! This isn&apos;t a registered sock-lover.</div>}
 
                 {this.state.id && <div className="otherprofile">

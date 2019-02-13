@@ -68,3 +68,29 @@ export function addChatMessage(newMessage) {
         newMessage: newMessage
     };
 }
+
+export function receiveFriendMessages(messages) {
+    return {
+        type: "LOAD_FRIEND_MESSAGES",
+        messages: messages
+    };
+}
+
+export function addFriendMessage(newMessage) {
+    return {
+        type: "ADD_FRIEND_MESSAGE",
+        newMessage: newMessage
+    };
+}
+
+export function recentlyAddedFriend() {
+    return {
+        type: "RECENT_FRIEND"
+    };
+}
+
+export function removeRecentFriend() {
+    return {
+        type: "RECENT_FRIEND_REMOVE"
+    };
+}

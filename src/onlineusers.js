@@ -16,7 +16,7 @@ class OnlineUsers extends React.Component {
                 <div className="onlineUsersListContainer">
                     {this.props.onlineUsers.length > 0 && <h1>The following sock-lovers are online right now:</h1>}
                     {this.props.onlineUsers.length == 0 && <h1>There are no other sock-lovers online right now.</h1>}
-                    {this.props.onlineUsers && <div className="onlineUserContainer">
+                    {this.props.onlineUsers.length > 0 && <div className="onlineUserContainer">
                         {this.props.onlineUsers && this.props.onlineUsers.map(
                             i => {
                                 return (

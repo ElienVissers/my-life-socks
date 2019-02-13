@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from './axios';
+import {initSocket} from './socket';
 
 export class FriendButton extends React.Component {
     constructor(props) {
@@ -46,10 +47,12 @@ export class FriendButton extends React.Component {
                 self.setState({
                     buttonText: "REMOVE FRIEND"
                 });
+                initSocket().emit('reloadFriendMessages');
             } else if (self.state.buttonText == 'REMOVE FRIEND') {
                 self.setState({
                     buttonText: "ADD FRIEND"
                 });
+                initSocket().emit('hideFriendMessages');
             }
         });
     }

@@ -224,6 +224,10 @@ header .line {
     border-radius: 20px;
 }
 
+#otherprofilediv {
+    margin-bottom: 0;
+}
+
 .profile-components, .otherprofile {
     width: 100%;
     display: flex;
@@ -241,13 +245,13 @@ header .line {
     min-width: 200px;
 }
 
-.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after, .onlineUserItemPicture:after, .chatMessageItemPicture:after {
+.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after, .onlineUserItemPicture:after, .chatMessageItemPicture:after, .friendMessageItemPicture:after {
     content: "";
     display: block;
     padding-bottom: 100%;
 }
 
-.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img {
+.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img, .friendMessageItemPicture img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -297,14 +301,14 @@ header .line {
     margin: 20px auto;
 }
 
-.friendsList, .onlineUsersList, .chatMessagesBox {
+.friendsList, .onlineUsersList, .chatMessagesBox, .friendMessagesBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
 }
 
-.friendsListContainer, .onlineUsersListContainer, .chatMessagesContainer {
+.friendsListContainer, .onlineUsersListContainer, .chatMessagesContainer, .friendMessagesContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -314,18 +318,18 @@ header .line {
     width: 50%;
 }
 
-.chatMessageInput {
+.chatMessageInput, .friendMessageInput {
     margin-top: auto;
     display: flex;
     flex-direction: column;
 }
 
-.chatMessageInput textarea {
+.chatMessageInput textarea, .friendMessageInput textarea {
     width: 500px;
     height: 150px;
 }
 
-.chatMessageInput button {
+.chatMessageInput button, .friendMessageInput button {
     width: 130px;
     margin: 20px auto;
 }
@@ -357,7 +361,7 @@ header .line {
     margin: 20px;
 }
 
-.chatMessageItem {
+.chatMessageItem, .friendMessageItem {
     display: flex;
     align-items: center;
     margin: 20px;
@@ -369,7 +373,7 @@ header .line {
     color: black;
 }
 
-.wannabeItem:hover, .friendItem:hover, .onlineUserItem:hover, .chatMessageItem:hover {
+.wannabeItem:hover, .friendItem:hover, .onlineUserItem:hover, .chatMessageItem:hover, .friendMessageItem:hover {
     border: 1px dotted rgb(163, 213, 224);
     border-radius: 5%;
     transform: scale(1.05);
@@ -382,14 +386,14 @@ header .line {
     min-width: 100px;
 }
 
-.chatMessageItemPicture {
+.chatMessageItemPicture, .friendMessageItemPicture {
     position: relative;
     width: 75px;
     height: 75px;
     min-width: 75px;
 }
 
-.wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img {
+.wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img, .friendMessageItemPicture img {
     border-radius: 50%;
     border: 2px solid tomato;
     margin-left: 10px;
@@ -400,7 +404,7 @@ header .line {
     font-weight: bold;
 }
 
-.chatMessageItemInfo {
+.chatMessageItemInfo, .friendMessageItemInfo {
     margin: 20px 30px;
     font-weight: bold;
 }
@@ -418,10 +422,9 @@ header .line {
     font-weight: normal;
 }
 
-.chatMessagesContainer {
+.chatMessagesContainer, .friendMessagesContainer {
     min-height: 400px;
     max-height: 790px;
-    /* overflow: auto; */
 }
 
 .chatMessagesContainer-messages {
@@ -430,21 +433,26 @@ header .line {
     margin: 10px;
 }
 
-.chatMessagesContainer-messages::-webkit-scrollbar {
+.friendMessagesContainer-messages {
+    max-height: 600px;
+    overflow: auto;
+    margin: 10px;
+}
+
+.chatMessagesContainer-messages::-webkit-scrollbar, .friendMessagesContainer-messages::-webkit-scrollbar {
     width: 0.6em;
 }
 
-.chatMessagesContainer-messages::-webkit-scrollbar-thumb {
-    /* background-color: rgb(235, 151, 131); */
+.chatMessagesContainer-messages::-webkit-scrollbar-thumb, .friendMessagesContainer-messages::-webkit-scrollbar-thumb {
     border-radius: 7px;
     -webkit-box-shadow: inset 0 0 2px tomato;
 }
 
-.chatMessagesContainer-messages::-webkit-scrollbar-button {
+.chatMessagesContainer-messages::-webkit-scrollbar-button, .friendMessagesContainer-messages::-webkit-scrollbar-button {
     display: none;
 }
 
-.chatMessagesContainer-messages::-webkit-scrollbar-track {
+.chatMessagesContainer-messages::-webkit-scrollbar-track, .friendMessagesContainer-messages::-webkit-scrollbar-track {
     display: none;
 }
 

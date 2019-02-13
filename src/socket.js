@@ -1,5 +1,5 @@
 import * as io from 'socket.io-client';
-import {createOnlineUsersList, addUserId, addToOnlineusersList, removeFromOnlineUsersList, receiveChatMessages, addChatMessage} from './actions';
+import {createOnlineUsersList, addUserId, addToOnlineusersList, removeFromOnlineUsersList, receiveChatMessages, addChatMessage, receiveFriendMessages, addFriendMessage, recentlyAddedFriend, removeRecentFriend} from './actions';
 
 let socket;
 
@@ -27,9 +27,26 @@ export function initSocket(store) {
             store.dispatch(receiveChatMessages(messages));
         });
 
-        socket.on('chatMessageFromServer', (newMessage) => {
+        socket.on('chatMessageFromServer', newMessage => {
             store.dispatch(addChatMessage(newMessage));
         });
+
+        socket.on('friendMessages', friendMessages => {
+            store.dispatch(receiveFriendMessages(friendMessages));
+        });
+
+        socket.on('newFriendMessageFromServer', newFriendMessage => {
+            store.dispatch(addFriendMessage(newFriendMessage));
+        });
+
+        socket.on('reloadFriendMessages', () => {
+            store.dispatch(recentlyAddedFriend());
+        });
+
+        socket.on('hideFriendMessages', () => {
+            store.dispatch(removeRecentFriend());
+        });
+        //change recentFriend in redux to false and friendmessages to empty
     }
     return socket;
 }

@@ -154,3 +154,27 @@ module.exports.addChatMessage = function(message, user_id) {
         [message, user_id]
     );
 };
+
+module.exports.getFriendMessages = function(friendship_id) {
+    return db.query(
+        `SELECT users.id AS sender_id, users.first AS sender_first, users.last AS sender_last, profile_pictures.url AS sender_url, message, friendmessages.id AS message_id, friendmessages.created_at AS message_created_at
+        FROM friendmessages
+        LEFT JOIN users
+        ON friendmessages.user_id = users.id
+        LEFT JOIN profile_pictures
+        ON friendmessages.user_id = profile_pictures.user_id
+        WHERE friendmessages.friendship_id = $1
+        ORDER BY friendmessages.created_at DESC
+        LIMIT 10`,
+        [friendship_id]
+    );
+};
+
+module.exports.addFriendMessage = function(message, user_id, friendship_id) {
+    return db.query(
+        `INSERT INTO friendmessages (message, user_id, friendship_id)
+        VALUES ($1, $2, $3)
+        RETURNING *`,
+        [message, user_id, friendship_id]
+    );
+};

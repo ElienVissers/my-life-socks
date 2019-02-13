@@ -13,6 +13,9 @@ class ChatMessages extends React.Component {
         this.sendMessage = this.sendMessage.bind(this);
     }
     componentDidUpdate() {
+        if (!this.elem) {
+            return null;
+        }
         this.elem.scrollTop = this.elem.scrollHeight;
     }
     componentDidMount() {
