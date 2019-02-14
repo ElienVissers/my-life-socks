@@ -179,3 +179,12 @@ module.exports.addFriendMessage = function(message, user_id, friendship_id) {
         [message, user_id, friendship_id]
     );
 };
+
+module.exports.searchUsers = function(text) {
+    return db.query(
+        `SELECT id
+        FROM users
+        WHERE first ILIKE $1`,
+        [text]
+    );
+};

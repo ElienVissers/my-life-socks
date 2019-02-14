@@ -10,6 +10,7 @@ import {ConnectedFriends} from './friends';
 import {ConnectedOnlineUsers} from './onlineusers';
 import {ConnectedChatMessages} from './chatmessages';
 import {ConnectedFriendMessages} from './friendmessages';
+import {SearchUsers} from './searchusers';
 
 export class App extends React.Component {
     constructor() {
@@ -122,7 +123,10 @@ export class App extends React.Component {
                             <Route
                                 path="/online"
                                 render={() => (
-                                    <ConnectedOnlineUsers />
+                                    <div>
+                                        <SearchUsers />
+                                        <ConnectedOnlineUsers />
+                                    </div>
                                 )}
                             />
                             <Route
@@ -147,5 +151,3 @@ export class App extends React.Component {
         );
     }
 }
-
-//<footer><h6>www.mylifesocks.com</h6></footer>

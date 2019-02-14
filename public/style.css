@@ -245,13 +245,13 @@ header .line {
     min-width: 200px;
 }
 
-.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after, .onlineUserItemPicture:after, .chatMessageItemPicture:after, .friendMessageItemPicture:after {
+.profile-components .profilepic:after, .otherprofile .profilepiccontainer:after, .wannabeItemPicture:after, .friendItemPicture:after, .onlineUserItemPicture:after, .chatMessageItemPicture:after, .friendMessageItemPicture:after, .searchUserItemPicture:after {
     content: "";
     display: block;
     padding-bottom: 100%;
 }
 
-.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img, .friendMessageItemPicture img {
+.profile-components .profilepic img, .otherprofile .profilepiccontainer img, .wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img, .friendMessageItemPicture img, .searchUserItemPicture img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -302,14 +302,14 @@ header .line {
     margin: 20px auto;
 }
 
-.friendsList, .onlineUsersList, .chatMessagesBox, .friendMessagesBox {
+.friendsList, .onlineUsersList, .chatMessagesBox, .friendMessagesBox, .searchUsers {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
 }
 
-.friendsListContainer, .onlineUsersListContainer, .chatMessagesContainer, .friendMessagesContainer {
+.friendsListContainer, .onlineUsersListContainer, .chatMessagesContainer, .friendMessagesContainer, .searchUsersListContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -344,13 +344,13 @@ header .line {
     color: tomato;
 }
 
-.wannabeContainer, .friendContainer, .onlineUserContainer {
+.wannabeContainer, .friendContainer, .onlineUserContainer, .searchUsersListContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.wannabeItem, .friendItem, .onlineUserItem > * {
+.wannabeItem, .friendItem, .onlineUserItem > * , .searchUserItem > * {
     display: flex;
     align-items: center;
     margin: 20px;
@@ -369,18 +369,18 @@ header .line {
     width: 500px;
 }
 
-.onlineUserItem > * {
+.onlineUserItem > * , .searchUserItem > * {
     text-decoration: none;
     color: black;
 }
 
-.wannabeItem:hover, .friendItem:hover, .onlineUserItem:hover, .chatMessageItem:hover, .friendMessageItem:hover {
+.wannabeItem:hover, .friendItem:hover, .onlineUserItem:hover, .chatMessageItem:hover, .friendMessageItem:hover, .searchUserItem:hover {
     border: 1px dotted rgb(163, 213, 224);
     border-radius: 5%;
     transform: scale(1.05);
 }
 
-.wannabeItemPicture, .friendItemPicture, .onlineUserItemPicture {
+.wannabeItemPicture, .friendItemPicture, .onlineUserItemPicture, .searchUserItemPicture {
     position: relative;
     width: 100px;
     height: 100px;
@@ -394,13 +394,13 @@ header .line {
     min-width: 75px;
 }
 
-.wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img, .friendMessageItemPicture img {
+.wannabeItemPicture img, .friendItemPicture img, .onlineUserItemPicture img, .chatMessageItemPicture img, .friendMessageItemPicture img, .searchUserItemPicture img {
     border-radius: 50%;
     border: 2px solid tomato;
     margin-left: 10px;
 }
 
-.wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo {
+.wannabeItemInfo, .friendItemInfo, .onlineUserItemInfo, .searchUserItemInfo {
     margin: 40px 30px;
     font-weight: bold;
 }
@@ -459,20 +459,4 @@ header .line {
 
 #noMessagesP {
     margin-top: 85px;
-}
-
-footer {
-    position: absolute;
-    width: 100vw;
-    text-align: center;
-    bottom: 0;
-    background-color: rgb(163, 213, 224);
-    color: tomato;
-    border-top: 2px solid tomato;
-}
-
-footer h6 {
-    padding: 5px auto;
-    font-size: 1.2em;
-    margin: 0;
 }

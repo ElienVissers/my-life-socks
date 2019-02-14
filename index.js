@@ -194,6 +194,27 @@ app.get('/friends/list', (req, res) => {
     });
 });
 
+app.post('/search', (req, res) => {
+    console.log("req.body.text: ", req.body.text);
+    db.searchUsers(req.body.text).then(dbInfo => {
+        var ids = [];
+        for (let i = 0; i < dbInfo.rows.length; i++) {
+            if (dbInfo.rows[i].id != req.session.userId) {
+                ids.push(dbInfo.rows[i].id);
+            }
+        }
+        db.getUsersByIds(ids).then(dbInfo => {
+            res.json(dbInfo);
+        }).catch(err => {
+            console.log("error in getUsersByIds: ", err);
+            res.json({error: true});
+        });
+    }).catch(err => {
+        console.log("error in searchUsers: ", err);
+        res.json({error: true});
+    });
+});
+
 app.get('/logout', (req, res) => {
     req.session = null;
     res.redirect('/welcome');
