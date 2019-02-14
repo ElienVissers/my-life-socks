@@ -103,7 +103,8 @@ module.exports.updateFriendship = function(user_id, otheruser_id) {
     return db.query(
         `UPDATE friendships
         SET accepted = true
-        WHERE (recipient_id = $1 AND sender_id = $2)`,
+        WHERE (recipient_id = $1 AND sender_id = $2)
+        RETURNING id`,
         [user_id, otheruser_id]
     );
 };

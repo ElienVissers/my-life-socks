@@ -83,9 +83,10 @@ export function addFriendMessage(newMessage) {
     };
 }
 
-export function recentlyAddedFriend() {
+export function recentlyAddedFriend(friendship_id) {
     return {
-        type: "RECENT_FRIEND"
+        type: "RECENT_FRIEND",
+        id: friendship_id
     };
 }
 

@@ -177,8 +177,8 @@ app.post('/friendshipstatus/:otherid/update', (req, res) => {
             console.log('error while removing friendship: ', err);
         });
     } else if (req.body.action == 'ACCEPT FRIEND REQUEST') {
-        db.updateFriendship(req.session.userId, req.params.otherid).then(() => {
-            res.json({success: true});
+        db.updateFriendship(req.session.userId, req.params.otherid).then(dbInfo => {
+            res.json({success: true, friendship_id: dbInfo.rows[0].id});
         }).catch(err => {
             console.log('error while updating friendship: ', err);
         });
@@ -307,8 +307,8 @@ io.on('connection', function(socket) {
         });
     });
 
-    socket.on('reloadFriendMessages', () => {
-        socket.emit('reloadFriendMessages');
+    socket.on('reloadFriendMessages', friendship_id => {
+        socket.emit('reloadFriendMessages', friendship_id);
     });
 
     socket.on('hideFriendMessages', () => {

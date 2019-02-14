@@ -20,7 +20,7 @@ class Friends extends React.Component {
 
                 <div className="friendsListContainer">
                     {this.props.wannabes.length > 0 && <h1>Pending friend requests:</h1>}
-                    {this.props.wannabes && <div className="wannabeContainer">
+                    {this.props.wannabes.length > 0 && <div className="wannabeContainer">
                         {this.props.wannabes && this.props.wannabes.map(
                             i => {
                                 return (
@@ -45,7 +45,7 @@ class Friends extends React.Component {
 
                 <div className="friendsListContainer">
                     {this.props.friends.length > 0 && <h1>Fellow sock-lovers:</h1>}
-                    {this.props.friends && <div className="friendContainer">
+                    {this.props.friends.length > 0 && <div className="friendContainer">
                         {this.props.friends && this.props.friends.map(
                             i => {
                                 return (

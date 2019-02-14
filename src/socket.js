@@ -39,8 +39,8 @@ export function initSocket(store) {
             store.dispatch(addFriendMessage(newFriendMessage));
         });
 
-        socket.on('reloadFriendMessages', () => {
-            store.dispatch(recentlyAddedFriend());
+        socket.on('reloadFriendMessages', friendship_id => {
+            store.dispatch(recentlyAddedFriend(friendship_id));
         });
 
         socket.on('hideFriendMessages', () => {

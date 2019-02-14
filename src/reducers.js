@@ -73,12 +73,16 @@ export function reducer(state={}, action) {
     }
 
     if (action.type == 'ADD_FRIEND_MESSAGE') {
-        state = { ...state, friendMessages : state.friendMessages.concat(action.newMessage) };
+        if (state.friendMessages) {
+            state = { ...state, friendMessages : state.friendMessages.concat(action.newMessage) };
+        } else {
+            state = { ...state, friendMessages : [action.newMessage]};
+        }
         return state;
     }
 
     if (action.type == 'RECENT_FRIEND') {
-        state = { ...state, recentFriend : true };
+        state = { ...state, recentFriend : action.id };
         return state;
     }
 

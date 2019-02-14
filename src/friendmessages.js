@@ -47,7 +47,8 @@ class FriendMessages extends React.Component {
         });
     }
     sendMessage() {
-        initSocket().emit('newFriendMessageFromUserInput', {text: this.state.textOfMessage, friendship_id: this.state.friendship_id});
+        console.log("recentFriend: ", this.props.recentFriend);
+        initSocket().emit('newFriendMessageFromUserInput', {text: this.state.textOfMessage, friendship_id: this.state.friendship_id || this.props.recentFriend});
         this.setState({
             textOfMessage: ''
         });

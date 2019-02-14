@@ -34,7 +34,7 @@ export class FriendButton extends React.Component {
     }
     updateFriendship() {
         var self = this;
-        axios.post('/friendshipstatus/' + this.props.otherUserId + '/update', {action: self.state.buttonText}).then(() => {
+        axios.post('/friendshipstatus/' + this.props.otherUserId + '/update', {action: self.state.buttonText}).then(results => {
             if (self.state.buttonText == 'ADD FRIEND') {
                 self.setState({
                     buttonText: "CANCEL FRIEND REQUEST"
@@ -47,7 +47,8 @@ export class FriendButton extends React.Component {
                 self.setState({
                     buttonText: "REMOVE FRIEND"
                 });
-                initSocket().emit('reloadFriendMessages');
+                console.log("results from updateFriendship: ", results);
+                initSocket().emit('reloadFriendMessages', results.data.friendship_id);
             } else if (self.state.buttonText == 'REMOVE FRIEND') {
                 self.setState({
                     buttonText: "ADD FRIEND"
