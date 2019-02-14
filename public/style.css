@@ -18,6 +18,14 @@ button:hover {
     filter: contrast(95%);
 }
 
+input {
+    margin: 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: tomato;
+}
+
 svg {
     width: 50px;
     height: auto;
@@ -52,7 +60,7 @@ h5 {
     align-items: center;
 }
 
-.welcome-page .user-input input {
+input {
     margin: 5px;
     border-top: none;
     border-left: none;
@@ -309,13 +317,22 @@ header .line {
     margin-bottom: 60px;
 }
 
-.friendsListContainer, .onlineUsersListContainer, .chatMessagesContainer, .friendMessagesContainer, .searchUsersListContainer {
+.friendsListContainer, .chatMessagesContainer, .friendMessagesContainer, .searchUsersListContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
     border-radius: 20px;
     margin-top: 50px;
+    width: 50%;
+}
+
+.onlineUsersListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
     width: 50%;
 }
 
@@ -335,7 +352,11 @@ header .line {
     margin: 20px auto;
 }
 
-.onlineUsersListContainer {
+.searchUsersListContainer {
+    margin-bottom: 30px;
+}
+
+.onlineUsersListContainer, .searchUsersListContainer {
     padding-bottom: 50px;
 }
 
@@ -344,7 +365,7 @@ header .line {
     color: tomato;
 }
 
-.wannabeContainer, .friendContainer, .onlineUserContainer, .searchUsersListContainer {
+.wannabeContainer, .friendContainer, .onlineUserContainer, .searchUsersList {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -459,4 +480,12 @@ header .line {
 
 #noMessagesP {
     margin-top: 85px;
+}
+
+.searchUsers button {
+    margin: 20px auto;
+}
+
+.searchUsers h1 {
+    color: tomato;
 }

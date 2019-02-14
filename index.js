@@ -195,7 +195,6 @@ app.get('/friends/list', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
-    console.log("req.body.text: ", req.body.text);
     db.searchUsers(req.body.text).then(dbInfo => {
         var ids = [];
         for (let i = 0; i < dbInfo.rows.length; i++) {

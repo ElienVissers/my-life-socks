@@ -38,7 +38,7 @@ export class SearchUsers extends React.Component {
                 <div className="searchUsersListContainer">
 
                     <h1>Search other sock-lovers!</h1>
-                    <textarea defaultValue={this.props.bio} onChange={this.handleChange}/>
+                    <input onChange={this.handleChange}/>
                     <button onClick={this.search}>SEARCH</button>
 
                     {this.state.error && <div className="error">Oops, something went wrong!</div>}
