@@ -53,7 +53,7 @@ class ChatMessages extends React.Component {
                                             <img src={msg.sender_url || '/profilepic.png'} />
                                         </Link>
                                         <div className="chatMessageItemInfo">
-                                            <p><span className="message-sender">{msg.sender_first} {msg.sender_last}</span> <span className="message-date">on {msg.message_created_at.slice(0,10)}, {msg.message_created_at.slice(14,19)}</span></p>
+                                            <p><span className="message-sender">{msg.sender_first} {msg.sender_last}</span> <span className="message-date">on {msg.message_created_at.slice(0,10)}, {msg.message_created_at.slice(11,16)}</span></p>
                                             <p className="message-content">{msg.message}</p>
                                         </div>
                                     </div>
