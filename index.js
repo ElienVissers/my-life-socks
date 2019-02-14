@@ -152,6 +152,7 @@ app.get('/user/:id.json', (req, res) => {
         res.json(dbInfo);
     }).catch(err => {
         console.log("error in getting OtherUserById: ", err);
+        res.json({invalidOtherUserId: true});
     });
 });
 

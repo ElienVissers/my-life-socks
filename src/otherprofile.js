@@ -14,7 +14,7 @@ export class OtherProfile extends React.Component {
             if (results.data.redirectTo) {
                 self.props.history.push(results.data.redirectTo);
             }
-            if (results.data.rows.length == 0) {
+            if (results.data.invalidOtherUserId || results.data.rows.length == 0) {
                 self.setState({
                     invalidOtherUserId: true
                 });
