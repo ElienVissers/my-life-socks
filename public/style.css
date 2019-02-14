@@ -266,16 +266,17 @@ header .line {
 .profileinfo h1, .otherprofileinfo h1 {
     color: tomato;
     margin-top: 0;
+    width: 30vw;
 }
 
 .bioeditor textarea {
-    width: 500px;
+    width: 100%;
     height: 130px;
     display: block;
 }
 
 .bioeditor pre, .otherprofileinfo pre {
-    width: 500px;
+    width: 30vw;
     overflow: auto;
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
