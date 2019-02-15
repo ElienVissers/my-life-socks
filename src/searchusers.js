@@ -5,31 +5,35 @@ import {Link} from 'react-router-dom';
 export class SearchUsers extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {draftSearch: ''};
         this.handleChange = this.handleChange.bind(this);
-        this.search = this.search.bind(this);
     }
     handleChange(e) {
-        this.setState({
-            draftSearch: e.target.value
-        });
-    }
-    search(e) {
-        e.preventDefault();
+        this[e.target.name] = e.target.value;
         var self = this;
-        axios.post('/search', {text: self.state.draftSearch + '%'}).then(results => {
-            console.log("results.data", results.data);
-            if (results.data.error) {
-                self.setState({
-                    error: true
-                });
-            } else {
-                //make sure that users is an array of user objects!
-                self.setState({
-                    users: results.data.rows
-                });
-            }
-        });
+        if (self[e.target.name] != '') {
+            axios.post('/search', {text: self[e.target.name] + '%'}).then(results => {
+                if (results.data.error) {
+                    self.setState({
+                        error: true
+                    });
+                } else {
+                    if (results.data.rows.length == 0) {
+                        self.setState({
+                            users: []
+                        });
+                    } else {
+                        self.setState({
+                            users: results.data.rows
+                        });
+                    }
+                }
+            });
+        } else {
+            self.setState({
+                users: []
+            });
+        }
     }
     render() {
         return (
@@ -38,12 +42,11 @@ export class SearchUsers extends React.Component {
                 <div className="searchUsersListContainer">
 
                     <h1>Search other sock-lovers!</h1>
-                    <input onChange={this.handleChange}/>
-                    <button onClick={this.search}>SEARCH</button>
+                    <input name="searchbar" onChange={this.handleChange} />
 
                     {this.state.error && <div className="error">Oops, something went wrong!</div>}
 
-                    {this.state.users && <div className="searchUsersList">
+                    {this.state.users && this.state.users.length > 0 && <div className="searchUsersList">
                         {this.state.users && this.state.users.map(
                             i => {
                                 return (
