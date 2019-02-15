@@ -184,7 +184,9 @@ module.exports.searchUsers = function(text) {
     return db.query(
         `SELECT id
         FROM users
-        WHERE first ILIKE $1`,
+        WHERE CONCAT(first, ' ', last) ILIKE $1`,
         [text]
     );
 };
+
+// WHERE ($1 ILIKE '%' + first  +'%') OR ($1 ILIKE '%' + last  +'%')

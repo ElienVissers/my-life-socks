@@ -11,6 +11,7 @@ export class SearchUsers extends React.Component {
     handleChange(e) {
         this[e.target.name] = e.target.value;
         var self = this;
+        console.log("text: ", self[e.target.name] + '%');
         if (self[e.target.name] != '') {
             axios.post('/search', {text: self[e.target.name] + '%'}).then(results => {
                 if (results.data.error) {
