@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from './axios';
 
+import CirclePicker from 'react-color/lib/Circle';
+
 export class FavouriteSocks extends React.Component {
     constructor(props) {
         super(props);
@@ -11,9 +13,9 @@ export class FavouriteSocks extends React.Component {
         this.openEditMode = this.openEditMode.bind(this);
         this.closeEditMode = this.closeEditMode.bind(this);
     }
-    handleChange(e) {
+    handleChange(color) {
         this.setState({
-            draftColor: e.target.value
+            draftColor: color.hex
         });
     }
     openEditMode() {
@@ -59,8 +61,10 @@ export class FavouriteSocks extends React.Component {
                 </div>}
 
                 {this.state.editMode && <div className="fav-socks-choose">
-                    <input type="color" defaultValue={this.props.color || '#000000'} onChange={this.handleChange} />
-                    <label>color</label>
+                    <CirclePicker
+                        color={this.state.draftColor}
+                        onChange={this.handleChange}
+                    />
                     <input type="radio" value="short socks" checked={this.props.shape === "short socks"} onChange={e => this.props.handleChange2(e.target.value)} />
                     <label>short socks</label>
                     <input type="radio" value="long socks" checked={this.props.shape === "long socks"} onChange={e => this.props.handleChange2(e.target.value)} />
@@ -72,16 +76,3 @@ export class FavouriteSocks extends React.Component {
         );
     }
 }
-
-//react-color :
-
-//import { CirclePicker } from 'react-color';
-// handleChange(color) {
-//     this.setState({
-//         draftColor: color.hex
-//     });
-// }
-// <CirclePicker
-//       color={this.state.draftColor}
-//       onChange={this.handleChange}
-// />
