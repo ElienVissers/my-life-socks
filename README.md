@@ -2,7 +2,7 @@
 
 <img src="public/logo.png" width=100 height=100>
 
-My Life Socks! is a social network application, written in JavaScript with [react](https://reactjs.org/), where people can connect over their love for socks.
+My Life Socks! is a social network application, written in JavaScript with [react](https://reactjs.org/), where people can connect over their love for socks. Everyone is free to sign up and connect!
 
 An active deployment via Heroku can be found [here](https://mylifesocks.herokuapp.com/).
 
@@ -26,6 +26,7 @@ An active deployment via Heroku can be found [here](https://mylifesocks.herokuap
 - Heroku
 - PostgreSQL
 - CSS3
+- AWS S3
 
 
 ## Roadmap
