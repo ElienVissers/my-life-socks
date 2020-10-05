@@ -31,4 +31,4 @@ An active deployment via Heroku can be found [here](https://mylifesocks.herokuap
 
 ## Roadmap
 
-Further updates will include a more responsive and mobile-friendly design.
+There is room for improvement in responsive and mobile-friendly design.
