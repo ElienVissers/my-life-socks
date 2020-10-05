@@ -19,7 +19,8 @@ An active deployment via Heroku can be found [here](https://mylifesocks.herokuap
 
 ## Tech Stack
 
-- React / Redux
+- React
+- Redux
 - Express.js
 - Node.js
 - Socket.io
